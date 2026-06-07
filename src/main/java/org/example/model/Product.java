@@ -15,8 +15,7 @@ public class Product {
     private BigDecimal _minStock;
     private boolean _isActive;
 
-    public Product() {
-    }
+    public Product() {}
 
     public Product(String article, String name, String category, String supplierName,
                    BigDecimal purchasePrice, BigDecimal sellingPrice, String unit)
@@ -30,6 +29,16 @@ public class Product {
         _unit = unit;
         _isActive = true;
         _minStock = BigDecimal.ZERO;
+    }
+
+    public Long getId()
+    {
+        return _id;
+    }
+
+    public void setId(Long id)
+    {
+        _id = id;
     }
 
     public String getArticle()

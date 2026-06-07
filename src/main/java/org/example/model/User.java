@@ -87,7 +87,6 @@ public class User {
         _isBlocked = blocked;
     }
 
-
     public int getFailedAttempts()
     {
         return _failedAttempts;
