@@ -4,6 +4,10 @@
  */
 package org.example.View;
 
+import org.example.controllers.Controller;
+
+import javax.swing.*;
+
 /**
  *
  * @author User
@@ -165,8 +169,29 @@ public class LoginFormNET extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_enterButtonActionPerformed
+        Controller con = new Controller();
+        if (!con.checkAccept(loginField.getText(), passwordField.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Заполните все поля.", "Предупреждение", JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
+            System.out.println(con.getUserRole(loginField.getText(), passwordField.getText()));
+            switch (con.getUserRole(loginField.getText(), passwordField.getText()))
+            {
+                case 0 -> {
+                    JOptionPane.showMessageDialog(this, "Пользователь не найден, обратитесь к администратору.", "Ошибка", JOptionPane.ERROR_MESSAGE);
+                }
+                case 1 -> {
+                    JOptionPane.showMessageDialog(this, "Добро пожаловать администратор", "Успех", JOptionPane.INFORMATION_MESSAGE);
+                }
+                case 2 -> {
+                    JOptionPane.showMessageDialog(this, "Добро пожаловать пользователь", "Успех", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -175,7 +200,7 @@ public class LoginFormNET extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
