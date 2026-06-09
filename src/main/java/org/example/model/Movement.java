@@ -1,10 +1,8 @@
 package org.example.model;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.SplittableRandom;
 
 public class Movement {
     public enum Type {
@@ -98,6 +96,16 @@ public class Movement {
 
     public void setDocNumber(String docNumber) {
         _docNumber = docNumber;
+    }
+
+    public LocalDate getDocDate()
+    {
+        return _docDate;
+    }
+
+    public void setDocDate(LocalDate date)
+    {
+        _docDate = date;
     }
 
     public Long getProductId() {

@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.View.LoginFormNET;
 import org.example.controllers.ConnectDB;
 
 import javax.swing.*;
@@ -13,7 +14,7 @@ public class Main {
             System.exit(0);
         }
         System.out.println("Подключен!");
-
-
+        LoginFormNET login = new LoginFormNET();
+        login.setVisible(true);
     }
 }
