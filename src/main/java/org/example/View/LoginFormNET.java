@@ -49,16 +49,18 @@ public class LoginFormNET extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
-        backgroundPanel.setBackground(new java.awt.Color(0, 102, 255));
+        backgroundPanel.setBackground(new java.awt.Color(33, 37, 41));
         backgroundPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         backgroundPanel.setLayout(new java.awt.GridBagLayout());
 
-        componentPanel.setForeground(new java.awt.Color(255, 255, 255));
+        componentPanel.setBackground(new java.awt.Color(51, 51, 51));
+        componentPanel.setForeground(new java.awt.Color(51, 51, 51));
         componentPanel.setPreferredSize(new java.awt.Dimension(400, 500));
         componentPanel.setLayout(new java.awt.GridBagLayout());
 
         titleLable.setBackground(new java.awt.Color(44, 62, 80));
         titleLable.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        titleLable.setForeground(new java.awt.Color(255, 255, 255));
         titleLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLable.setText("WarehouseIS");
         titleLable.setToolTipText("");
@@ -69,7 +71,7 @@ public class LoginFormNET extends javax.swing.JFrame {
         componentPanel.add(titleLable, gridBagConstraints);
 
         descriptionLabel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        descriptionLabel.setForeground(new java.awt.Color(127, 140, 141));
+        descriptionLabel.setForeground(new java.awt.Color(204, 204, 204));
         descriptionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         descriptionLabel.setText("Управление складом");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -80,6 +82,7 @@ public class LoginFormNET extends javax.swing.JFrame {
 
         loginLabel.setBackground(new java.awt.Color(52, 73, 94));
         loginLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        loginLabel.setForeground(new java.awt.Color(204, 204, 204));
         loginLabel.setText("Логин");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
@@ -130,6 +133,7 @@ public class LoginFormNET extends javax.swing.JFrame {
 
         passwordLabel.setBackground(new java.awt.Color(52, 73, 94));
         passwordLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        passwordLabel.setForeground(new java.awt.Color(204, 204, 204));
         passwordLabel.setText("Пароль");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -168,7 +172,7 @@ public class LoginFormNET extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
+    private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         Controller con = new Controller();
         if (!con.checkAccept(loginField.getText(), passwordField.getText()))
         {
@@ -184,6 +188,9 @@ public class LoginFormNET extends javax.swing.JFrame {
                 }
                 case 1 -> {
                     JOptionPane.showMessageDialog(this, "Добро пожаловать администратор", "Успех", JOptionPane.INFORMATION_MESSAGE);
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.setVisible(true);
+                    this.setVisible(false);
                 }
                 case 2 -> {
                     JOptionPane.showMessageDialog(this, "Добро пожаловать пользователь", "Успех", JOptionPane.INFORMATION_MESSAGE);
