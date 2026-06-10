@@ -1,6 +1,5 @@
-package org.example.controllers;
+package controllers;
 
-import javax.swing.*;
 import java.sql.*;
 
 public class Controller {

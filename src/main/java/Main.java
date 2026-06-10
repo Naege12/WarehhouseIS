@@ -1,7 +1,5 @@
-package org.example;
-
-import org.example.View.LoginFormNET;
-import org.example.controllers.ConnectDB;
+import View.LoginFormNET;
+import controllers.ConnectDB;
 
 import javax.swing.*;
 

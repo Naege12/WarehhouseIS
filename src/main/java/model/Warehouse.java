@@ -1,4 +1,4 @@
-package org.example.model;
+package model;
 
 public class Warehouse {
     private Long _id;
