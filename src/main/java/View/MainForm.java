@@ -5,57 +5,39 @@
 package View;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
  * @author User
  */
-public class Dashboard extends javax.swing.JFrame {
+public class MainForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form Dashboard
+     * Creates new form MainForm
      */
-    public Dashboard() {
-        initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-        setupTables();
-        loadTestData();
-    }
-    
-    private void setupTables() {
-    // Таблица 1: Низкий остаток
-    tblLowStock.setModel(new javax.swing.table.DefaultTableModel(
-        new Object[][]{},
-        new String[]{"SKU", "Товар", "Остаток", "Мин."}
-    ));
-    tblLowStock.setRowHeight(30);
-    
-    // Таблица 2: Последние операции
-    tblRecentMovements.setModel(new javax.swing.table.DefaultTableModel(
-        new Object[][]{},
-        new String[]{"Дата", "Тип", "Товар", "Кол-во", "Кто"}
-    ));
-    tblRecentMovements.setRowHeight(30);
-}
+    private JFrame parrentFrame;
+    private CardLayout cardLayout;
+    private deshboardPanel dashboardPanel;
+    private settingsPanel settingsPanel;
 
-private void loadTestData() {
-    // Заполняем первую таблицу
-    javax.swing.table.DefaultTableModel lowModel = 
-        (javax.swing.table.DefaultTableModel) tblLowStock.getModel();
-    
-    lowModel.addRow(new Object[]{"NB-001", "Ноутбук Lenovo", "3", "5"});
-    lowModel.addRow(new Object[]{"DR-002", "Дрель Makita", "7", "10"});
-    lowModel.addRow(new Object[]{"MN-003", "Монитор Samsung", "2", "3"});
-    
-    // Заполняем вторую таблицу
-    javax.swing.table.DefaultTableModel recentModel = 
-        (javax.swing.table.DefaultTableModel) tblRecentMovements.getModel();
-    
-    recentModel.addRow(new Object[]{"07.06 14:30", "IN", "Ноутбук Lenovo", "+10", "Иван"});
-    recentModel.addRow(new Object[]{"07.06 11:20", "OUT", "Дрель Makita", "-3", "Пётр"});
-    recentModel.addRow(new Object[]{"06.06 16:45", "IN", "Монитор Samsung", "+5", "Иван"});
-}
+    public MainForm(JFrame parrentFrame) {
+        this.parrentFrame = parrentFrame;
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        initComponents();
+
+        contentPanel.removeAll();
+        contentPanel.setLayout(new CardLayout());
+        cardLayout = (CardLayout) contentPanel.getLayout();
+
+        dashboardPanel = new deshboardPanel();
+        settingsPanel = new settingsPanel();
+
+        contentPanel.add(dashboardPanel, "dashboard");
+        contentPanel.add(settingsPanel, "settings");
+
+        cardLayout.show(contentPanel, "dashboard");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,22 +63,10 @@ private void loadTestData() {
         settingsButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         contentPanel = new javax.swing.JPanel();
-        namePanelLabel = new javax.swing.JLabel();
-        tablesPanel = new javax.swing.JPanel();
-        lowStockContainer = new javax.swing.JPanel();
-        lowStockScrollPane = new javax.swing.JScrollPane();
-        tblLowStock = new javax.swing.JTable();
-        recentContainer = new javax.swing.JPanel();
-        recentScrollPane = new javax.swing.JScrollPane();
-        tblRecentMovements = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("WarehouseIS - Панель управления");
-        setMaximumSize(null);
         setMinimumSize(new java.awt.Dimension(1920, 1080));
-        setName("dashboard"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
-        setResizable(false);
+        setName("mainForm"); // NOI18N
         setSize(new java.awt.Dimension(1920, 1080));
         getContentPane().setLayout(null);
 
@@ -127,9 +97,15 @@ private void loadTestData() {
         dashboardButton.setBackground(new java.awt.Color(52, 152, 219));
         dashboardButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         dashboardButton.setForeground(new java.awt.Color(255, 255, 255));
-        dashboardButton.setText("ДАШБОРД");
+        dashboardButton.setText("Понель управления");
         dashboardButton.setFocusPainted(false);
         dashboardButton.setMaximumSize(new java.awt.Dimension(200, 40));
+        dashboardButton.setPreferredSize(new java.awt.Dimension(85, 24));
+        dashboardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dashboardButtonActionPerformed(evt);
+            }
+        });
         sidebarPanel.add(dashboardButton);
 
         productButton.setBackground(new java.awt.Color(52, 152, 219));
@@ -138,6 +114,11 @@ private void loadTestData() {
         productButton.setText("Товары");
         productButton.setFocusPainted(false);
         productButton.setMaximumSize(new java.awt.Dimension(200, 40));
+        productButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productButtonActionPerformed(evt);
+            }
+        });
         sidebarPanel.add(productButton);
 
         warehouseButton.setBackground(new java.awt.Color(52, 152, 219));
@@ -146,6 +127,11 @@ private void loadTestData() {
         warehouseButton.setText("Склады");
         warehouseButton.setFocusPainted(false);
         warehouseButton.setMaximumSize(new java.awt.Dimension(200, 40));
+        warehouseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                warehouseButtonActionPerformed(evt);
+            }
+        });
         sidebarPanel.add(warehouseButton);
 
         comingButton.setBackground(new java.awt.Color(52, 152, 219));
@@ -154,6 +140,11 @@ private void loadTestData() {
         comingButton.setText("Приход");
         comingButton.setFocusPainted(false);
         comingButton.setMaximumSize(new java.awt.Dimension(200, 40));
+        comingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comingButtonActionPerformed(evt);
+            }
+        });
         sidebarPanel.add(comingButton);
 
         expenditureButton.setBackground(new java.awt.Color(52, 152, 219));
@@ -162,6 +153,11 @@ private void loadTestData() {
         expenditureButton.setText("Расход");
         expenditureButton.setFocusPainted(false);
         expenditureButton.setMaximumSize(new java.awt.Dimension(200, 40));
+        expenditureButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                expenditureButtonActionPerformed(evt);
+            }
+        });
         sidebarPanel.add(expenditureButton);
 
         historyButton.setBackground(new java.awt.Color(52, 152, 219));
@@ -170,6 +166,11 @@ private void loadTestData() {
         historyButton.setText("История");
         historyButton.setFocusPainted(false);
         historyButton.setMaximumSize(new java.awt.Dimension(200, 40));
+        historyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historyButtonActionPerformed(evt);
+            }
+        });
         sidebarPanel.add(historyButton);
 
         usersButton.setBackground(new java.awt.Color(52, 152, 219));
@@ -178,6 +179,11 @@ private void loadTestData() {
         usersButton.setText("Пользователи");
         usersButton.setFocusPainted(false);
         usersButton.setMaximumSize(new java.awt.Dimension(200, 40));
+        usersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usersButtonActionPerformed(evt);
+            }
+        });
         sidebarPanel.add(usersButton);
 
         settingsButton.setBackground(new java.awt.Color(52, 152, 219));
@@ -186,6 +192,11 @@ private void loadTestData() {
         settingsButton.setText("Настройки");
         settingsButton.setFocusPainted(false);
         settingsButton.setMaximumSize(new java.awt.Dimension(200, 40));
+        settingsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                settingsButtonActionPerformed(evt);
+            }
+        });
         sidebarPanel.add(settingsButton);
 
         exitButton.setBackground(new java.awt.Color(52, 152, 219));
@@ -194,80 +205,61 @@ private void loadTestData() {
         exitButton.setText("Выход");
         exitButton.setFocusPainted(false);
         exitButton.setMaximumSize(new java.awt.Dimension(200, 40));
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
         sidebarPanel.add(exitButton);
 
         mainPanel.add(sidebarPanel, java.awt.BorderLayout.LINE_START);
 
         contentPanel.setBackground(new java.awt.Color(255, 255, 255));
-        contentPanel.setLayout(new java.awt.BorderLayout());
-
-        namePanelLabel.setBackground(new java.awt.Color(0, 0, 0));
-        namePanelLabel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        namePanelLabel.setForeground(new java.awt.Color(0, 0, 0));
-        namePanelLabel.setText("Панель управления");
-        namePanelLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 10, 20));
-        contentPanel.add(namePanelLabel, java.awt.BorderLayout.PAGE_START);
-
-        tablesPanel.setBackground(new java.awt.Color(255, 255, 255));
-        tablesPanel.setLayout(new java.awt.GridLayout(2, 1, 10, 10));
-
-        lowStockContainer.setBackground(new java.awt.Color(255, 255, 255));
-        lowStockContainer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ТОВАРЫ С НИЗКИМ ОСТАТКОМ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18), new java.awt.Color(0, 0, 0))); // NOI18N
-        lowStockContainer.setLayout(new java.awt.BorderLayout());
-
-        lowStockScrollPane.setBackground(new java.awt.Color(255, 255, 255));
-        lowStockScrollPane.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-
-        tblLowStock.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tblLowStock.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        lowStockScrollPane.setViewportView(tblLowStock);
-
-        lowStockContainer.add(lowStockScrollPane, java.awt.BorderLayout.CENTER);
-
-        tablesPanel.add(lowStockContainer);
-
-        recentContainer.setBackground(new java.awt.Color(255, 255, 255));
-        recentContainer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ПОСЛЕДНИЕ ОПЕРАЦИИ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18), new java.awt.Color(0, 0, 0))); // NOI18N
-        recentContainer.setLayout(new java.awt.BorderLayout());
-
-        tblRecentMovements.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tblRecentMovements.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        recentScrollPane.setViewportView(tblRecentMovements);
-
-        recentContainer.add(recentScrollPane, java.awt.BorderLayout.CENTER);
-
-        tablesPanel.add(recentContainer);
-
-        contentPanel.add(tablesPanel, java.awt.BorderLayout.CENTER);
-
+        contentPanel.setLayout(new java.awt.CardLayout());
         mainPanel.add(contentPanel, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(mainPanel);
         mainPanel.setBounds(0, 50, 1920, 1030);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void dashboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardButtonActionPerformed
+        cardLayout.show(contentPanel, "dashboard");
+    }//GEN-LAST:event_dashboardButtonActionPerformed
+
+    private void productButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productButtonActionPerformed
+
+    private void warehouseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warehouseButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_warehouseButtonActionPerformed
+
+    private void comingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comingButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comingButtonActionPerformed
+
+    private void expenditureButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expenditureButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_expenditureButtonActionPerformed
+
+    private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_historyButtonActionPerformed
+
+    private void usersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usersButtonActionPerformed
+
+    private void settingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsButtonActionPerformed
+        cardLayout.show(contentPanel, "settings");
+    }//GEN-LAST:event_settingsButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        parrentFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,20 +278,20 @@ private void loadTestData() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Dashboard().setVisible(true);
+
             }
         });
     }
@@ -313,18 +305,10 @@ private void loadTestData() {
     private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JButton historyButton;
-    private javax.swing.JPanel lowStockContainer;
-    private javax.swing.JScrollPane lowStockScrollPane;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JLabel namePanelLabel;
     private javax.swing.JButton productButton;
-    private javax.swing.JPanel recentContainer;
-    private javax.swing.JScrollPane recentScrollPane;
     private javax.swing.JButton settingsButton;
     private javax.swing.JPanel sidebarPanel;
-    private javax.swing.JPanel tablesPanel;
-    private javax.swing.JTable tblLowStock;
-    private javax.swing.JTable tblRecentMovements;
     private javax.swing.JLabel userLabel;
     private javax.swing.JButton usersButton;
     private javax.swing.JButton warehouseButton;
