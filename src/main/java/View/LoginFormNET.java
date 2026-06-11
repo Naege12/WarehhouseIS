@@ -188,8 +188,10 @@ public class LoginFormNET extends javax.swing.JFrame {
                 }
                 case 1 -> {
                     JOptionPane.showMessageDialog(this, "Добро пожаловать администратор", "Успех", JOptionPane.INFORMATION_MESSAGE);
-                    Dashboard dashboard = new Dashboard();
-                    dashboard.setVisible(true);
+                    MainForm mainForm = new MainForm(this);
+                    mainForm.setVisible(true);
+                    passwordField.setText("");
+                    loginField.setText("");
                     this.setVisible(false);
                 }
                 case 2 -> {
