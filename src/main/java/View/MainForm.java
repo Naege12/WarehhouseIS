@@ -21,6 +21,9 @@ public class MainForm extends javax.swing.JFrame {
     private deshboardPanel dashboardPanel;
     private settingsPanel settingsPanel;
     private productsPanel productPanel;
+    private WarehousesPanel warehousePanel;
+    private IncomePanel incomePanel;
+    private OutcomePanel outcomePanel;
 
     public MainForm(JFrame parrentFrame) {
         this.parrentFrame = parrentFrame;
@@ -34,10 +37,16 @@ public class MainForm extends javax.swing.JFrame {
         dashboardPanel = new deshboardPanel();
         settingsPanel = new settingsPanel();
         productPanel = new productsPanel();
+        warehousePanel = new WarehousesPanel();
+        incomePanel = new IncomePanel();
+        outcomePanel = new OutcomePanel();
 
         contentPanel.add(dashboardPanel, "dashboard");
         contentPanel.add(settingsPanel, "settings");
         contentPanel.add(productPanel, "products");
+        contentPanel.add(warehousePanel, "warehouses");
+        contentPanel.add(incomePanel, "income");
+        contentPanel.add(outcomePanel, "outcome");
 
         cardLayout.show(contentPanel, "dashboard");
     }
@@ -236,15 +245,15 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_productButtonActionPerformed
 
     private void warehouseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warehouseButtonActionPerformed
-        // TODO add your handling code here:
+        cardLayout.show(contentPanel, "warehouses");
     }//GEN-LAST:event_warehouseButtonActionPerformed
 
     private void comingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comingButtonActionPerformed
-        // TODO add your handling code here:
+        cardLayout.show(contentPanel, "income");
     }//GEN-LAST:event_comingButtonActionPerformed
 
     private void expenditureButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expenditureButtonActionPerformed
-        // TODO add your handling code here:
+        cardLayout.show(contentPanel, "outcome");
     }//GEN-LAST:event_expenditureButtonActionPerformed
 
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
