@@ -20,6 +20,7 @@ public class MainForm extends javax.swing.JFrame {
     private CardLayout cardLayout;
     private deshboardPanel dashboardPanel;
     private settingsPanel settingsPanel;
+    private productsPanel productPanel;
 
     public MainForm(JFrame parrentFrame) {
         this.parrentFrame = parrentFrame;
@@ -32,9 +33,11 @@ public class MainForm extends javax.swing.JFrame {
 
         dashboardPanel = new deshboardPanel();
         settingsPanel = new settingsPanel();
+        productPanel = new productsPanel();
 
         contentPanel.add(dashboardPanel, "dashboard");
         contentPanel.add(settingsPanel, "settings");
+        contentPanel.add(productPanel, "products");
 
         cardLayout.show(contentPanel, "dashboard");
     }
@@ -229,7 +232,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_dashboardButtonActionPerformed
 
     private void productButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productButtonActionPerformed
-        // TODO add your handling code here:
+        cardLayout.show(contentPanel, "products");
     }//GEN-LAST:event_productButtonActionPerformed
 
     private void warehouseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warehouseButtonActionPerformed

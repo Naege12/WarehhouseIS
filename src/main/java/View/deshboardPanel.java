@@ -26,38 +26,37 @@ public class deshboardPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        tablePanel = new javax.swing.JPanel();
+        lowStockPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLowStock = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
+        recentMovmentsPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblRecentMovements = new javax.swing.JTable();
+        deshboardHeaderPanel = new javax.swing.JPanel();
+        namePanelLabel = new javax.swing.JLabel();
+        dashboaedDateLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
-        setForeground(new java.awt.Color(51, 51, 51));
+        setForeground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Панель управления");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        add(jLabel1, java.awt.BorderLayout.PAGE_START);
+        tablePanel.setBackground(new java.awt.Color(51, 51, 51));
+        tablePanel.setForeground(new java.awt.Color(51, 51, 51));
+        tablePanel.setName("tablesContainer"); // NOI18N
+        tablePanel.setLayout(new java.awt.GridLayout(2, 1, 10, 10));
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.setForeground(new java.awt.Color(51, 51, 51));
-        jPanel2.setName("tablesContainer"); // NOI18N
-        jPanel2.setLayout(new java.awt.GridLayout(2, 1, 10, 10));
+        lowStockPanel.setBackground(new java.awt.Color(51, 51, 51));
+        lowStockPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ТОВАРЫ С НИЗКИМ ОСТАТКОМ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        lowStockPanel.setForeground(new java.awt.Color(51, 51, 51));
+        lowStockPanel.setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ТОВАРЫ С НИЗКИМ ОСТАТКОМ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel3.setForeground(new java.awt.Color(51, 51, 51));
-        jPanel3.setLayout(new java.awt.BorderLayout());
-
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setForeground(new java.awt.Color(51, 51, 51));
+        jScrollPane1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        tblLowStock.setBackground(new java.awt.Color(51, 51, 51));
+        tblLowStock.setBackground(new java.awt.Color(255, 255, 255));
+        tblLowStock.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tblLowStock.setForeground(new java.awt.Color(51, 51, 51));
         tblLowStock.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,18 +73,21 @@ public class deshboardPanel extends javax.swing.JPanel {
         tblLowStock.setSelectionForeground(new java.awt.Color(51, 51, 51));
         jScrollPane1.setViewportView(tblLowStock);
 
-        jPanel3.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        lowStockPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jPanel2.add(jPanel3);
+        tablePanel.add(lowStockPanel);
 
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ПОСЛЕДНИЕ ОПЕРАЦИИ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel4.setForeground(new java.awt.Color(51, 51, 51));
-        jPanel4.setLayout(new java.awt.BorderLayout());
+        recentMovmentsPanel.setBackground(new java.awt.Color(51, 51, 51));
+        recentMovmentsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ПОСЛЕДНИЕ ОПЕРАЦИИ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        recentMovmentsPanel.setForeground(new java.awt.Color(51, 51, 51));
+        recentMovmentsPanel.setLayout(new java.awt.BorderLayout());
 
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setForeground(new java.awt.Color(51, 51, 51));
+        jScrollPane2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        tblRecentMovements.setBackground(new java.awt.Color(51, 51, 51));
+        tblRecentMovements.setBackground(new java.awt.Color(255, 255, 255));
+        tblRecentMovements.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tblRecentMovements.setForeground(new java.awt.Color(51, 51, 51));
         tblRecentMovements.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,21 +104,40 @@ public class deshboardPanel extends javax.swing.JPanel {
         tblRecentMovements.setSelectionForeground(new java.awt.Color(51, 51, 51));
         jScrollPane2.setViewportView(tblRecentMovements);
 
-        jPanel4.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        recentMovmentsPanel.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
-        jPanel2.add(jPanel4);
+        tablePanel.add(recentMovmentsPanel);
 
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        add(tablePanel, java.awt.BorderLayout.CENTER);
+
+        deshboardHeaderPanel.setBackground(new java.awt.Color(51, 51, 51));
+        deshboardHeaderPanel.setLayout(new java.awt.GridBagLayout());
+
+        namePanelLabel.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        namePanelLabel.setForeground(new java.awt.Color(255, 255, 255));
+        namePanelLabel.setText("Панель управления");
+        namePanelLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        deshboardHeaderPanel.add(namePanelLabel, new java.awt.GridBagConstraints());
+
+        dashboaedDateLabel.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        dashboaedDateLabel.setForeground(new java.awt.Color(255, 255, 255));
+        dashboaedDateLabel.setText("время");
+        dashboaedDateLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        deshboardHeaderPanel.add(dashboaedDateLabel, new java.awt.GridBagConstraints());
+
+        add(deshboardHeaderPanel, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel dashboaedDateLabel;
+    private javax.swing.JPanel deshboardHeaderPanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel lowStockPanel;
+    private javax.swing.JLabel namePanelLabel;
+    private javax.swing.JPanel recentMovmentsPanel;
+    private javax.swing.JPanel tablePanel;
     private javax.swing.JTable tblLowStock;
     private javax.swing.JTable tblRecentMovements;
     // End of variables declaration//GEN-END:variables

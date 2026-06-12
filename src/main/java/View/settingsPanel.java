@@ -26,22 +26,52 @@ public class settingsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
+        settingsHeaderPanel = new javax.swing.JPanel();
+        namePanelLabel = new javax.swing.JLabel();
+        dashboaedDateLabel = new javax.swing.JLabel();
+        setupPanel = new javax.swing.JPanel();
+        newPassvordLabel = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(462, 936));
         setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("jLabel2");
-        add(jLabel2, java.awt.BorderLayout.PAGE_START);
+        settingsHeaderPanel.setBackground(new java.awt.Color(51, 51, 51));
+        settingsHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanel6.setLayout(new java.awt.GridLayout(5, 2, 10, 15));
-        add(jPanel6, java.awt.BorderLayout.CENTER);
+        namePanelLabel.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        namePanelLabel.setForeground(new java.awt.Color(255, 255, 255));
+        namePanelLabel.setText("Панель управления");
+        namePanelLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        settingsHeaderPanel.add(namePanelLabel, new java.awt.GridBagConstraints());
+
+        dashboaedDateLabel.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        dashboaedDateLabel.setForeground(new java.awt.Color(255, 255, 255));
+        dashboaedDateLabel.setText("время");
+        dashboaedDateLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        settingsHeaderPanel.add(dashboaedDateLabel, new java.awt.GridBagConstraints());
+
+        add(settingsHeaderPanel, java.awt.BorderLayout.PAGE_START);
+
+        setupPanel.setBackground(new java.awt.Color(255, 255, 255));
+        setupPanel.setForeground(new java.awt.Color(51, 51, 51));
+        setupPanel.setName("tablesContainer"); // NOI18N
+        setupPanel.setLayout(new java.awt.GridLayout(2, 1, 10, 10));
+
+        newPassvordLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        newPassvordLabel.setForeground(new java.awt.Color(0, 0, 0));
+        newPassvordLabel.setText("jLabel1");
+        newPassvordLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        setupPanel.add(newPassvordLabel);
+
+        add(setupPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel dashboaedDateLabel;
+    private javax.swing.JLabel namePanelLabel;
+    private javax.swing.JLabel newPassvordLabel;
+    private javax.swing.JPanel settingsHeaderPanel;
+    private javax.swing.JPanel setupPanel;
     // End of variables declaration//GEN-END:variables
 }
