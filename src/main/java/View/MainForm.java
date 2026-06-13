@@ -4,6 +4,13 @@
  */
 package View;
 
+import View.Panels.productsPanel;
+import View.Panels.deshboardPanel;
+import View.Panels.settingsPanel;
+import View.Panels.usersPanel;
+import View.Panels.OutcomePanel;
+import View.Panels.WarehousesPanel;
+import View.Panels.IncomePanel;
 import javax.swing.*;
 import java.awt.*;
 
@@ -24,6 +31,8 @@ public class MainForm extends javax.swing.JFrame {
     private WarehousesPanel warehousePanel;
     private IncomePanel incomePanel;
     private OutcomePanel outcomePanel;
+    private usersPanel userPanel;
+    private boolean isAdmin = false;
 
     public MainForm(JFrame parrentFrame) {
         this.parrentFrame = parrentFrame;
@@ -40,6 +49,7 @@ public class MainForm extends javax.swing.JFrame {
         warehousePanel = new WarehousesPanel();
         incomePanel = new IncomePanel();
         outcomePanel = new OutcomePanel();
+        userPanel = new usersPanel();
 
         contentPanel.add(dashboardPanel, "dashboard");
         contentPanel.add(settingsPanel, "settings");
@@ -47,6 +57,7 @@ public class MainForm extends javax.swing.JFrame {
         contentPanel.add(warehousePanel, "warehouses");
         contentPanel.add(incomePanel, "income");
         contentPanel.add(outcomePanel, "outcome");
+        contentPanel.add(userPanel, "users");
 
         cardLayout.show(contentPanel, "dashboard");
     }
@@ -70,7 +81,6 @@ public class MainForm extends javax.swing.JFrame {
         warehouseButton = new javax.swing.JButton();
         comingButton = new javax.swing.JButton();
         expenditureButton = new javax.swing.JButton();
-        historyButton = new javax.swing.JButton();
         usersButton = new javax.swing.JButton();
         settingsButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
@@ -95,6 +105,7 @@ public class MainForm extends javax.swing.JFrame {
         userLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         userLabel.setForeground(new java.awt.Color(255, 255, 255));
         userLabel.setText("Имя пользователя");
+        userLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
         headerPanel.add(userLabel, java.awt.BorderLayout.LINE_END);
 
         getContentPane().add(headerPanel);
@@ -172,19 +183,6 @@ public class MainForm extends javax.swing.JFrame {
         });
         sidebarPanel.add(expenditureButton);
 
-        historyButton.setBackground(new java.awt.Color(52, 152, 219));
-        historyButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        historyButton.setForeground(new java.awt.Color(255, 255, 255));
-        historyButton.setText("История");
-        historyButton.setFocusPainted(false);
-        historyButton.setMaximumSize(new java.awt.Dimension(200, 40));
-        historyButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                historyButtonActionPerformed(evt);
-            }
-        });
-        sidebarPanel.add(historyButton);
-
         usersButton.setBackground(new java.awt.Color(52, 152, 219));
         usersButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         usersButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -226,7 +224,7 @@ public class MainForm extends javax.swing.JFrame {
 
         mainPanel.add(sidebarPanel, java.awt.BorderLayout.LINE_START);
 
-        contentPanel.setBackground(new java.awt.Color(255, 255, 255));
+        contentPanel.setBackground(new java.awt.Color(33, 37, 41));
         contentPanel.setLayout(new java.awt.CardLayout());
         mainPanel.add(contentPanel, java.awt.BorderLayout.CENTER);
 
@@ -256,12 +254,8 @@ public class MainForm extends javax.swing.JFrame {
         cardLayout.show(contentPanel, "outcome");
     }//GEN-LAST:event_expenditureButtonActionPerformed
 
-    private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_historyButtonActionPerformed
-
     private void usersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersButtonActionPerformed
-        // TODO add your handling code here:
+        cardLayout.show(contentPanel, "users");
     }//GEN-LAST:event_usersButtonActionPerformed
 
     private void settingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsButtonActionPerformed
@@ -316,7 +310,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton expenditureButton;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel headerPanel;
-    private javax.swing.JButton historyButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton productButton;
     private javax.swing.JButton settingsButton;

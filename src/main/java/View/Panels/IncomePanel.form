@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="29" green="25" red="21" type="rgb"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -11,14 +16,22 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-85,0,0,4,19"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="outcomeHeaderPanel">
+    <Container class="javax.swing.JPanel" name="incomeHeaderPanel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="33" red="33" type="rgb"/>
+          <Color blue="29" green="25" red="21" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder>
+              <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
+            </LineBorder>
+          </Border>
         </Property>
       </Properties>
       <Constraints>
@@ -37,7 +50,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x420;&#x430;&#x441;&#x445;&#x43e;&#x434; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;"/>
+            <Property name="text" type="java.lang.String" value="&#x41f;&#x440;&#x438;&#x445;&#x43e;&#x434; &#x422;&#x43e;&#x432;&#x430;&#x440;&#x430;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                 <EmptyBorder bottom="20" left="20" right="20" top="20"/>
@@ -73,13 +86,16 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="outcomeContentPanel">
+    <Container class="javax.swing.JPanel" name="incomeContentPanel">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="29" green="25" red="21" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder justification="1" title="&#x41e;&#x424;&#x41e;&#x420;&#x41c;&#x418;&#x422;&#x42c; &#x420;&#x410;&#x421;&#x425;&#x41e;&#x414;">
+            <TitledBorder justification="1" title="&#x41e;&#x424;&#x41e;&#x420;&#x41c;&#x418;&#x422;&#x42c; &#x41f;&#x420;&#x418;&#x425;&#x41e;&#x414;">
               <Font PropertyName="font" name="Arial" size="20" style="1"/>
-              <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
+              <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -101,7 +117,7 @@
               <Font name="Arial" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x422;&#x43e;&#x432;&#x430;&#x440;:"/>
           </Properties>
@@ -138,7 +154,7 @@
               <Font name="Arial" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x421;&#x43a;&#x43b;&#x430;&#x434;:"/>
           </Properties>
@@ -175,7 +191,7 @@
               <Font name="Arial" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x41a;&#x43e;&#x43b;&#x438;&#x447;&#x435;&#x441;&#x442;&#x432;&#x43e;:"/>
           </Properties>
@@ -206,7 +222,7 @@
               <Font name="Arial" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x426;&#x435;&#x43d;&#x430;:"/>
           </Properties>
@@ -231,15 +247,15 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="clientLabel">
+        <Component class="javax.swing.JLabel" name="providerLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x41a;&#x43b;&#x438;&#x435;&#x43d;&#x442;"/>
+            <Property name="text" type="java.lang.String" value="&#x41f;&#x43e;&#x441;&#x442;&#x430;&#x432;&#x449;&#x438;&#x43a;:"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -247,7 +263,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="clientTextField">
+        <Component class="javax.swing.JTextField" name="providerTextField">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="0"/>
@@ -268,7 +284,7 @@
               <Font name="Arial" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x42f;&#x447;&#x435;&#x439;&#x43a;&#x430;:"/>
           </Properties>
@@ -307,6 +323,9 @@
             <Property name="text" type="java.lang.String" value="&#x41e;&#x444;&#x43e;&#x440;&#x43c;&#x438;&#x442;&#x44c;"/>
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButtonActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="1" gridY="6" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="10" insetsLeft="5" insetsBottom="10" insetsRight="5" anchor="10" weightX="0.0" weightY="0.0"/>

@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package View;
+package View.Panels;
 
 /**
  *
  * @author User
  */
-public class productsPanel extends javax.swing.JPanel {
+public class WarehousesPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form productsPanel
+     * Creates new form WarehousesPanel
      */
-    public productsPanel() {
+    public WarehousesPanel() {
         initComponents();
     }
 
@@ -26,7 +26,7 @@ public class productsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        productsHeaderPanel = new javax.swing.JPanel();
+        warehouseHeaderPanel = new javax.swing.JPanel();
         namePanelLabel = new javax.swing.JLabel();
         productDateLabel = new javax.swing.JLabel();
         buttonPanel = new javax.swing.JPanel();
@@ -36,28 +36,29 @@ public class productsPanel extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         tablePanel = new javax.swing.JPanel();
         tableScrollPane = new javax.swing.JScrollPane();
-        tblProducts = new javax.swing.JTable();
+        tblWarehouse = new javax.swing.JTable();
 
-        setPreferredSize(new java.awt.Dimension(462, 936));
         setLayout(new java.awt.BorderLayout());
 
-        productsHeaderPanel.setBackground(new java.awt.Color(51, 51, 51));
-        productsHeaderPanel.setLayout(new java.awt.GridBagLayout());
+        warehouseHeaderPanel.setBackground(new java.awt.Color(33, 37, 41));
+        warehouseHeaderPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        warehouseHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
         namePanelLabel.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         namePanelLabel.setForeground(new java.awt.Color(255, 255, 255));
-        namePanelLabel.setText("Управление товарами");
+        namePanelLabel.setText("Управление складами");
         namePanelLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        productsHeaderPanel.add(namePanelLabel, new java.awt.GridBagConstraints());
+        warehouseHeaderPanel.add(namePanelLabel, new java.awt.GridBagConstraints());
 
         productDateLabel.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         productDateLabel.setForeground(new java.awt.Color(255, 255, 255));
         productDateLabel.setText("время");
         productDateLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        productsHeaderPanel.add(productDateLabel, new java.awt.GridBagConstraints());
+        warehouseHeaderPanel.add(productDateLabel, new java.awt.GridBagConstraints());
 
-        add(productsHeaderPanel, java.awt.BorderLayout.PAGE_START);
+        add(warehouseHeaderPanel, java.awt.BorderLayout.PAGE_START);
 
+        buttonPanel.setBackground(new java.awt.Color(33, 37, 41));
         buttonPanel.setMaximumSize(new java.awt.Dimension(900, 35));
         buttonPanel.setMinimumSize(new java.awt.Dimension(900, 35));
         buttonPanel.setPreferredSize(new java.awt.Dimension(900, 35));
@@ -117,12 +118,17 @@ public class productsPanel extends javax.swing.JPanel {
 
         add(buttonPanel, java.awt.BorderLayout.CENTER);
 
+        tablePanel.setBackground(new java.awt.Color(33, 37, 41));
+        tablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "СКЛАДЫ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 20), new java.awt.Color(255, 255, 255))); // NOI18N
         tablePanel.setPreferredSize(new java.awt.Dimension(900, 900));
         tablePanel.setLayout(new java.awt.BorderLayout());
 
+        tableScrollPane.setBackground(new java.awt.Color(255, 255, 255));
         tableScrollPane.setPreferredSize(new java.awt.Dimension(900, 700));
 
-        tblProducts.setModel(new javax.swing.table.DefaultTableModel(
+        tblWarehouse.setBackground(new java.awt.Color(255, 255, 255));
+        tblWarehouse.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tblWarehouse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -133,8 +139,8 @@ public class productsPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblProducts.setRowHeight(30);
-        tableScrollPane.setViewportView(tblProducts);
+        tblWarehouse.setRowHeight(30);
+        tableScrollPane.setViewportView(tblWarehouse);
 
         tablePanel.add(tableScrollPane, java.awt.BorderLayout.CENTER);
 
@@ -166,9 +172,9 @@ public class productsPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel namePanelLabel;
     private javax.swing.JLabel productDateLabel;
-    private javax.swing.JPanel productsHeaderPanel;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JScrollPane tableScrollPane;
-    private javax.swing.JTable tblProducts;
+    private javax.swing.JTable tblWarehouse;
+    private javax.swing.JPanel warehouseHeaderPanel;
     // End of variables declaration//GEN-END:variables
 }

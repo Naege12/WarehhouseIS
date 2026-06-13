@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package View;
+package View.Panels;
 
 /**
  *
@@ -28,31 +28,32 @@ public class settingsPanel extends javax.swing.JPanel {
 
         settingsHeaderPanel = new javax.swing.JPanel();
         namePanelLabel = new javax.swing.JLabel();
-        dashboaedDateLabel = new javax.swing.JLabel();
+        settingsDateLabel = new javax.swing.JLabel();
         setupPanel = new javax.swing.JPanel();
         newPassvordLabel = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(462, 936));
         setLayout(new java.awt.BorderLayout());
 
-        settingsHeaderPanel.setBackground(new java.awt.Color(51, 51, 51));
+        settingsHeaderPanel.setBackground(new java.awt.Color(33, 37, 41));
+        settingsHeaderPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         settingsHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
         namePanelLabel.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         namePanelLabel.setForeground(new java.awt.Color(255, 255, 255));
-        namePanelLabel.setText("Панель управления");
+        namePanelLabel.setText("Настройки");
         namePanelLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         settingsHeaderPanel.add(namePanelLabel, new java.awt.GridBagConstraints());
 
-        dashboaedDateLabel.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        dashboaedDateLabel.setForeground(new java.awt.Color(255, 255, 255));
-        dashboaedDateLabel.setText("время");
-        dashboaedDateLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        settingsHeaderPanel.add(dashboaedDateLabel, new java.awt.GridBagConstraints());
+        settingsDateLabel.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        settingsDateLabel.setForeground(new java.awt.Color(255, 255, 255));
+        settingsDateLabel.setText("время");
+        settingsDateLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        settingsHeaderPanel.add(settingsDateLabel, new java.awt.GridBagConstraints());
 
         add(settingsHeaderPanel, java.awt.BorderLayout.PAGE_START);
 
-        setupPanel.setBackground(new java.awt.Color(255, 255, 255));
+        setupPanel.setBackground(new java.awt.Color(33, 37, 41));
         setupPanel.setForeground(new java.awt.Color(51, 51, 51));
         setupPanel.setName("tablesContainer"); // NOI18N
         setupPanel.setLayout(new java.awt.GridLayout(2, 1, 10, 10));
@@ -68,9 +69,9 @@ public class settingsPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel dashboaedDateLabel;
     private javax.swing.JLabel namePanelLabel;
     private javax.swing.JLabel newPassvordLabel;
+    private javax.swing.JLabel settingsDateLabel;
     private javax.swing.JPanel settingsHeaderPanel;
     private javax.swing.JPanel setupPanel;
     // End of variables declaration//GEN-END:variables

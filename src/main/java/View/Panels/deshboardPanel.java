@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package View;
+package View.Panels;
 
 /**
  *
@@ -41,23 +41,24 @@ public class deshboardPanel extends javax.swing.JPanel {
         setForeground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.BorderLayout());
 
-        tablePanel.setBackground(new java.awt.Color(51, 51, 51));
+        tablePanel.setBackground(new java.awt.Color(33, 37, 41));
+        tablePanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
         tablePanel.setForeground(new java.awt.Color(51, 51, 51));
         tablePanel.setName("tablesContainer"); // NOI18N
         tablePanel.setLayout(new java.awt.GridLayout(2, 1, 10, 10));
 
-        lowStockPanel.setBackground(new java.awt.Color(51, 51, 51));
+        lowStockPanel.setBackground(new java.awt.Color(33, 37, 41));
         lowStockPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ТОВАРЫ С НИЗКИМ ОСТАТКОМ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         lowStockPanel.setForeground(new java.awt.Color(51, 51, 51));
         lowStockPanel.setLayout(new java.awt.BorderLayout());
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setForeground(new java.awt.Color(51, 51, 51));
+        jScrollPane1.setForeground(new java.awt.Color(33, 37, 41));
         jScrollPane1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         tblLowStock.setBackground(new java.awt.Color(255, 255, 255));
         tblLowStock.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tblLowStock.setForeground(new java.awt.Color(51, 51, 51));
+        tblLowStock.setForeground(new java.awt.Color(33, 37, 41));
         tblLowStock.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -69,6 +70,7 @@ public class deshboardPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblLowStock.setGridColor(new java.awt.Color(33, 37, 41));
         tblLowStock.setName("tblLowStock"); // NOI18N
         tblLowStock.setSelectionForeground(new java.awt.Color(51, 51, 51));
         jScrollPane1.setViewportView(tblLowStock);
@@ -77,7 +79,7 @@ public class deshboardPanel extends javax.swing.JPanel {
 
         tablePanel.add(lowStockPanel);
 
-        recentMovmentsPanel.setBackground(new java.awt.Color(51, 51, 51));
+        recentMovmentsPanel.setBackground(new java.awt.Color(33, 37, 41));
         recentMovmentsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ПОСЛЕДНИЕ ОПЕРАЦИИ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         recentMovmentsPanel.setForeground(new java.awt.Color(51, 51, 51));
         recentMovmentsPanel.setLayout(new java.awt.BorderLayout());
@@ -110,7 +112,7 @@ public class deshboardPanel extends javax.swing.JPanel {
 
         add(tablePanel, java.awt.BorderLayout.CENTER);
 
-        deshboardHeaderPanel.setBackground(new java.awt.Color(51, 51, 51));
+        deshboardHeaderPanel.setBackground(new java.awt.Color(33, 37, 41));
         deshboardHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
         namePanelLabel.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N

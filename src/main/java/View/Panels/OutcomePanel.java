@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package View;
+package View.Panels;
 
 /**
  *
@@ -45,9 +45,11 @@ public class OutcomePanel extends javax.swing.JPanel {
         cellTextField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(33, 37, 41));
         setLayout(new java.awt.BorderLayout());
 
-        outcomeHeaderPanel.setBackground(new java.awt.Color(51, 51, 51));
+        outcomeHeaderPanel.setBackground(new java.awt.Color(33, 37, 41));
+        outcomeHeaderPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         outcomeHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
         namePanelLabel.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
@@ -64,12 +66,13 @@ public class OutcomePanel extends javax.swing.JPanel {
 
         add(outcomeHeaderPanel, java.awt.BorderLayout.PAGE_START);
 
-        outcomeContentPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ОФОРМИТЬ РАСХОД", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 20), new java.awt.Color(0, 0, 0))); // NOI18N
+        outcomeContentPanel.setBackground(new java.awt.Color(33, 37, 41));
+        outcomeContentPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ОФОРМИТЬ РАСХОД", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 20), new java.awt.Color(255, 255, 255))); // NOI18N
         outcomeContentPanel.setPreferredSize(new java.awt.Dimension(250, 400));
         outcomeContentPanel.setLayout(new java.awt.GridBagLayout());
 
         productNameLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        productNameLabel.setForeground(new java.awt.Color(0, 0, 0));
+        productNameLabel.setForeground(new java.awt.Color(255, 255, 255));
         productNameLabel.setText("Товар:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -84,7 +87,7 @@ public class OutcomePanel extends javax.swing.JPanel {
         outcomeContentPanel.add(nameProductComboBox, gridBagConstraints);
 
         nameWarehouseLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        nameWarehouseLabel.setForeground(new java.awt.Color(0, 0, 0));
+        nameWarehouseLabel.setForeground(new java.awt.Color(255, 255, 255));
         nameWarehouseLabel.setText("Склад:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -103,7 +106,7 @@ public class OutcomePanel extends javax.swing.JPanel {
         outcomeContentPanel.add(nameWarehouseComboBox, gridBagConstraints);
 
         quantityLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        quantityLabel.setForeground(new java.awt.Color(0, 0, 0));
+        quantityLabel.setForeground(new java.awt.Color(255, 255, 255));
         quantityLabel.setText("Количество:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -122,7 +125,7 @@ public class OutcomePanel extends javax.swing.JPanel {
         outcomeContentPanel.add(quantityTextField, gridBagConstraints);
 
         priceLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        priceLabel.setForeground(new java.awt.Color(0, 0, 0));
+        priceLabel.setForeground(new java.awt.Color(255, 255, 255));
         priceLabel.setText("Цена:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -141,7 +144,7 @@ public class OutcomePanel extends javax.swing.JPanel {
         outcomeContentPanel.add(priceTextField, gridBagConstraints);
 
         clientLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        clientLabel.setForeground(new java.awt.Color(0, 0, 0));
+        clientLabel.setForeground(new java.awt.Color(255, 255, 255));
         clientLabel.setText("Клиент");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -160,7 +163,7 @@ public class OutcomePanel extends javax.swing.JPanel {
         outcomeContentPanel.add(clientTextField, gridBagConstraints);
 
         cellLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        cellLabel.setForeground(new java.awt.Color(0, 0, 0));
+        cellLabel.setForeground(new java.awt.Color(255, 255, 255));
         cellLabel.setText("Ячейка:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -183,6 +186,11 @@ public class OutcomePanel extends javax.swing.JPanel {
         addButton.setForeground(new java.awt.Color(255, 255, 255));
         addButton.setText("Оформить");
         addButton.setFocusPainted(false);
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -192,6 +200,10 @@ public class OutcomePanel extends javax.swing.JPanel {
 
         add(outcomeContentPanel, java.awt.BorderLayout.WEST);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
