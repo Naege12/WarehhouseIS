@@ -5,7 +5,7 @@
 package View;
 
 import View.Panels.productsPanel;
-import View.Panels.deshboardPanel;
+import View.Panels.dashboardPanel;
 import View.Panels.settingsPanel;
 import View.Panels.usersPanel;
 import View.Panels.OutcomePanel;
@@ -25,7 +25,7 @@ public class MainForm extends javax.swing.JFrame {
      */
     private JFrame parrentFrame;
     private CardLayout cardLayout;
-    private deshboardPanel dashboardPanel;
+    private dashboardPanel dashboardPanel;
     private settingsPanel settingsPanel;
     private productsPanel productPanel;
     private WarehousesPanel warehousePanel;
@@ -43,7 +43,7 @@ public class MainForm extends javax.swing.JFrame {
         contentPanel.setLayout(new CardLayout());
         cardLayout = (CardLayout) contentPanel.getLayout();
 
-        dashboardPanel = new deshboardPanel();
+        dashboardPanel = new dashboardPanel();
         settingsPanel = new settingsPanel();
         productPanel = new productsPanel();
         warehousePanel = new WarehousesPanel();

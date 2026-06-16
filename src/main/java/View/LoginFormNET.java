@@ -14,6 +14,7 @@ import javax.swing.*;
  */
 public class LoginFormNET extends javax.swing.JFrame {
 
+
     /**
      * Creates new form LoginFormNET
      */
@@ -180,7 +181,6 @@ public class LoginFormNET extends javax.swing.JFrame {
         }
         else
         {
-            System.out.println(con.getUserRole(loginField.getText(), passwordField.getText()));
             switch (con.getUserRole(loginField.getText(), passwordField.getText()))
             {
                 case 0 -> {

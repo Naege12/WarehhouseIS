@@ -4,17 +4,78 @@
  */
 package View.Panels;
 
+import dao.MovementDAO;
+import dao.ProductDAO;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 /**
  *
  * @author User
  */
-public class deshboardPanel extends javax.swing.JPanel {
+public class dashboardPanel extends javax.swing.JPanel {
+
+    private ProductDAO  productDAO = new ProductDAO();
+    private MovementDAO movementDAO = new MovementDAO();
+    private long currentWarehouseId = 1;
 
     /**
      * Creates new form deshboardPanel
      */
-    public deshboardPanel() {
+    public dashboardPanel() {
         initComponents();
+        loadData();
+    }
+
+
+    public void loadData() {
+        loadLowStockData();
+        loadRecentMovements();
+    }
+
+    private void loadLowStockData() {
+        DefaultTableModel model = (DefaultTableModel) tblLowStock.getModel();
+        model.setRowCount(0);
+
+        try {
+            List<Object[]> items = productDAO.getLowStockProducts(currentWarehouseId);
+
+            if (items.isEmpty()) {
+                model.addRow(new Object[]{"—", "Нет товаров с низким остатком", "—", "—"});
+            } else {
+                for (Object[] row : items) {
+                    model.addRow(row);
+                }
+            }
+            System.out.println("✅ Загружено товаров с низким остатком: " + items.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadRecentMovements() {
+        DefaultTableModel model = (DefaultTableModel) tblRecentMovements.getModel();
+        model.setRowCount(0);
+
+        try {
+            List<Object[]> movements = movementDAO.getRecentMovements(10);
+
+            if (movements.isEmpty()) {
+                model.addRow(new Object[]{"—", "—", "Нет операций", "—", "—"});
+            } else {
+                for (Object[] row : movements) {
+                    model.addRow(row);
+                }
+            }
+            System.out.println("✅ Загружено операций: " + movements.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void refreshData() {
+        loadData();
     }
 
     /**
@@ -67,7 +128,7 @@ public class deshboardPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Артикул", "Товар", "Остаток", "Мин."
             }
         ));
         tblLowStock.setGridColor(new java.awt.Color(33, 37, 41));
@@ -93,13 +154,13 @@ public class deshboardPanel extends javax.swing.JPanel {
         tblRecentMovements.setForeground(new java.awt.Color(51, 51, 51));
         tblRecentMovements.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Дата", "Тип", "Товар", "Кол-во", "Кто"
             }
         ));
         tblRecentMovements.setName("tblRecentMovements"); // NOI18N

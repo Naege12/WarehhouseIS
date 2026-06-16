@@ -4,6 +4,8 @@
  */
 package View.Panels;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User

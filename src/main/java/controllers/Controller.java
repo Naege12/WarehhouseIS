@@ -13,7 +13,7 @@ public class Controller {
         String role = "";
         int roleIndex = 0;
 
-        try (Connection con = ConnectDB.ConnectDB()) {
+        try (Connection con = ConnectDB.getConnection()) {
             String sql = "SELECT role FROM users WHERE login = ? AND password_hash = ?";
             PreparedStatement prpQuery = con.prepareStatement(sql);
             prpQuery.setString(1, login);
@@ -38,7 +38,7 @@ public class Controller {
 
             return roleIndex;
 
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return 0;
         }

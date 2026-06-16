@@ -4,18 +4,69 @@
  */
 package View.Panels;
 
+import dao.ProductDAO;
+import model.Product;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 /**
  *
  * @author User
  */
 public class productsPanel extends javax.swing.JPanel {
+    private ProductDAO productDAO = new ProductDAO();
 
     /**
      * Creates new form productsPanel
      */
     public productsPanel() {
         initComponents();
+        loadData();
     }
+
+    public void loadData()
+    {
+        loadProductData();
+    }
+
+    private void loadProductData() {
+        DefaultTableModel model = (DefaultTableModel) tblProducts.getModel();
+        model.setRowCount(0);
+
+        try {
+            List<Product> products = productDAO.getAllProducts();
+
+            if (products.isEmpty()) {
+                model.addRow(new Object[]{"—", "Нет товаров", "—", "—", "—", "—"});
+            } else {
+                for (Product p : products) {
+                    model.addRow(new Object[]{
+                            p.getId(),
+                            p.getArticle(),
+                            p.getName(),
+                            p.getUnit(),
+                            p.getCategory(),
+                            p.getSupplierName(),
+                            p.getPurchasePrice(),
+                            p.getSellingPrice(),
+                            p.getMinStock(),
+                            p.isActive()
+                    });
+                }
+            }
+            System.out.println("✅ Загружено товаров: " + products.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void delete(Long id)
+    {
+
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,10 +81,10 @@ public class productsPanel extends javax.swing.JPanel {
         namePanelLabel = new javax.swing.JLabel();
         productDateLabel = new javax.swing.JLabel();
         buttonPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        reloadButton = new javax.swing.JButton();
         tablePanel = new javax.swing.JPanel();
         tableScrollPane = new javax.swing.JScrollPane();
         tblProducts = new javax.swing.JTable();
@@ -65,18 +116,18 @@ public class productsPanel extends javax.swing.JPanel {
         buttonPanel.setMinimumSize(new java.awt.Dimension(900, 35));
         buttonPanel.setPreferredSize(new java.awt.Dimension(900, 35));
 
-        jButton1.setBackground(new java.awt.Color(40, 167, 69));
-        jButton1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Добавить");
-        jButton1.setFocusPainted(false);
-        jButton1.setPreferredSize(new java.awt.Dimension(130, 35));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setBackground(new java.awt.Color(40, 167, 69));
+        addButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        addButton.setForeground(new java.awt.Color(255, 255, 255));
+        addButton.setText("Добавить");
+        addButton.setFocusPainted(false);
+        addButton.setPreferredSize(new java.awt.Dimension(130, 35));
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
-        buttonPanel.add(jButton1);
+        buttonPanel.add(addButton);
 
         jButton2.setBackground(new java.awt.Color(255, 193, 7));
         jButton2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -92,31 +143,31 @@ public class productsPanel extends javax.swing.JPanel {
         });
         buttonPanel.add(jButton2);
 
-        jButton3.setBackground(new java.awt.Color(220, 53, 69));
-        jButton3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Удалить");
-        jButton3.setFocusPainted(false);
-        jButton3.setPreferredSize(new java.awt.Dimension(130, 35));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        deleteButton.setBackground(new java.awt.Color(220, 53, 69));
+        deleteButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setText("Удалить");
+        deleteButton.setFocusPainted(false);
+        deleteButton.setPreferredSize(new java.awt.Dimension(130, 35));
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                deleteButtonActionPerformed(evt);
             }
         });
-        buttonPanel.add(jButton3);
+        buttonPanel.add(deleteButton);
 
-        jButton5.setBackground(new java.awt.Color(255, 153, 0));
-        jButton5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Обновить");
-        jButton5.setFocusPainted(false);
-        jButton5.setPreferredSize(new java.awt.Dimension(130, 35));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        reloadButton.setBackground(new java.awt.Color(255, 153, 0));
+        reloadButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        reloadButton.setForeground(new java.awt.Color(255, 255, 255));
+        reloadButton.setText("Обновить");
+        reloadButton.setFocusPainted(false);
+        reloadButton.setPreferredSize(new java.awt.Dimension(130, 35));
+        reloadButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                reloadButtonActionPerformed(evt);
             }
         });
-        buttonPanel.add(jButton5);
+        buttonPanel.add(reloadButton);
 
         add(buttonPanel, java.awt.BorderLayout.CENTER);
 
@@ -133,15 +184,23 @@ public class productsPanel extends javax.swing.JPanel {
         tblProducts.setForeground(new java.awt.Color(33, 37, 41));
         tblProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Артикул", "Наименование", "Количество", "Категория", "Поствщик", "Цена покупки", "Цена продажи", "Минимаотный остаток", "Активен"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tblProducts.setRowHeight(30);
         tableScrollPane.setViewportView(tblProducts);
 
@@ -150,32 +209,33 @@ public class productsPanel extends javax.swing.JPanel {
         add(tablePanel, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void reloadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reloadButtonActionPerformed
+        JOptionPane.showMessageDialog(this, "Данные таблицы обновленны");
+        loadData();
+    }//GEN-LAST:event_reloadButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
     private javax.swing.JPanel buttonPanel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel namePanelLabel;
     private javax.swing.JLabel productDateLabel;
     private javax.swing.JPanel productsHeaderPanel;
+    private javax.swing.JButton reloadButton;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JScrollPane tableScrollPane;
     private javax.swing.JTable tblProducts;
