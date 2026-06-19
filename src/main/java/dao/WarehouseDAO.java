@@ -11,7 +11,7 @@ public class WarehouseDAO {
 
     public List<Warehouse> getAllWarehouses() {
         List<Warehouse> warehouses = new ArrayList<>();
-        String sql = "SELECT id, name, address FROM warehouses WHERE is_active = true";
+        String sql = "SELECT id, name, address FROM warehouses";
 
         try (Connection conn = ConnectDB.getConnection();
              Statement stmt = conn.createStatement();
@@ -102,9 +102,6 @@ public class WarehouseDAO {
         }
     }
 
-    // ============================================================
-    // 6. ПРОВЕРКА СУЩЕСТВОВАНИЯ СКЛАДА ПО НАЗВАНИЮ
-    // ============================================================
     public boolean warehouseExists(String name) {
         String sql = "SELECT COUNT(*) FROM warehouses WHERE name = ? AND is_active = true";
 
@@ -123,9 +120,7 @@ public class WarehouseDAO {
         return false;
     }
 
-    // ============================================================
-    // 7. ПОЛУЧИТЬ ВСЕ СКЛАДЫ (ВКЛЮЧАЯ НЕАКТИВНЫЕ)
-    // ============================================================
+
     public List<Warehouse> getAllWarehousesIncludingInactive() {
         List<Warehouse> warehouses = new ArrayList<>();
         String sql = "SELECT id, name, address FROM warehouses";

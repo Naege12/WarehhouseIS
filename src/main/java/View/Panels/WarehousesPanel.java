@@ -4,6 +4,12 @@
  */
 package View.Panels;
 
+import dao.WarehouseDAO;
+import model.Warehouse;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 /**
  *
  * @author User
@@ -13,9 +19,43 @@ public class WarehousesPanel extends javax.swing.JPanel {
     /**
      * Creates new form WarehousesPanel
      */
+    private WarehouseDAO warehouseDAO = new WarehouseDAO();
     public WarehousesPanel() {
         initComponents();
+        loadData();
     }
+
+    public void loadData()
+    {
+        loadWarehouseData();
+    }
+
+
+    private void loadWarehouseData() {
+        DefaultTableModel model = (DefaultTableModel) tblWarehouse.getModel();
+        model.setRowCount(0);
+
+        try {
+            List<Warehouse> warehouse = warehouseDAO.getAllWarehouses();
+
+            if (warehouse.isEmpty()) {
+                model.addRow(new Object[]{"—", "Нет товаров", "—", "—", "—", "—"});
+            } else {
+                for (Warehouse w : warehouse) {
+                    model.addRow(new Object[]{
+                            w.getId(),
+                            w.getName(),
+                            w.getAddress()
+                    });
+                }
+            }
+            System.out.println("✅ Загружено товаров: " + warehouse.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
