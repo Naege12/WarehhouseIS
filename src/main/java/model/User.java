@@ -47,12 +47,12 @@ public class User {
         _login = login;
     }
 
-    public String getPassvord()
+    public String getPassword()
     {
         return _password;
     }
 
-    public void setPassvord(String passvord)
+    public void setPassword(String passvord)
     {
         _password = passvord;
     }
@@ -77,7 +77,7 @@ public class User {
         _role = role;
     }
 
-    public boolean isBlocked()
+    public boolean getIsBlocked()
     {
         return _isBlocked;
     }

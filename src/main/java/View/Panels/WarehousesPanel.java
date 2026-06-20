@@ -68,12 +68,12 @@ public class WarehousesPanel extends javax.swing.JPanel {
 
         warehouseHeaderPanel = new javax.swing.JPanel();
         namePanelLabel = new javax.swing.JLabel();
-        productDateLabel = new javax.swing.JLabel();
+        warehouseDateLabel = new javax.swing.JLabel();
         buttonPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
         tablePanel = new javax.swing.JPanel();
         tableScrollPane = new javax.swing.JScrollPane();
         tblWarehouse = new javax.swing.JTable();
@@ -90,11 +90,11 @@ public class WarehousesPanel extends javax.swing.JPanel {
         namePanelLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         warehouseHeaderPanel.add(namePanelLabel, new java.awt.GridBagConstraints());
 
-        productDateLabel.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        productDateLabel.setForeground(new java.awt.Color(255, 255, 255));
-        productDateLabel.setText("время");
-        productDateLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        warehouseHeaderPanel.add(productDateLabel, new java.awt.GridBagConstraints());
+        warehouseDateLabel.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        warehouseDateLabel.setForeground(new java.awt.Color(255, 255, 255));
+        warehouseDateLabel.setText("время");
+        warehouseDateLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        warehouseHeaderPanel.add(warehouseDateLabel, new java.awt.GridBagConstraints());
 
         add(warehouseHeaderPanel, java.awt.BorderLayout.PAGE_START);
 
@@ -103,58 +103,58 @@ public class WarehousesPanel extends javax.swing.JPanel {
         buttonPanel.setMinimumSize(new java.awt.Dimension(900, 35));
         buttonPanel.setPreferredSize(new java.awt.Dimension(900, 35));
 
-        jButton1.setBackground(new java.awt.Color(40, 167, 69));
-        jButton1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Добавить");
-        jButton1.setFocusPainted(false);
-        jButton1.setPreferredSize(new java.awt.Dimension(130, 35));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setBackground(new java.awt.Color(40, 167, 69));
+        addButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        addButton.setForeground(new java.awt.Color(255, 255, 255));
+        addButton.setText("Добавить");
+        addButton.setFocusPainted(false);
+        addButton.setPreferredSize(new java.awt.Dimension(130, 35));
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
-        buttonPanel.add(jButton1);
+        buttonPanel.add(addButton);
 
-        jButton2.setBackground(new java.awt.Color(255, 193, 7));
-        jButton2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Редактировать");
-        jButton2.setFocusPainted(false);
-        jButton2.setMaximumSize(new java.awt.Dimension(190, 29));
-        jButton2.setPreferredSize(new java.awt.Dimension(170, 35));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        editButton.setBackground(new java.awt.Color(255, 193, 7));
+        editButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        editButton.setForeground(new java.awt.Color(255, 255, 255));
+        editButton.setText("Редактировать");
+        editButton.setFocusPainted(false);
+        editButton.setMaximumSize(new java.awt.Dimension(190, 29));
+        editButton.setPreferredSize(new java.awt.Dimension(170, 35));
+        editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                editButtonActionPerformed(evt);
             }
         });
-        buttonPanel.add(jButton2);
+        buttonPanel.add(editButton);
 
-        jButton3.setBackground(new java.awt.Color(220, 53, 69));
-        jButton3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Удалить");
-        jButton3.setFocusPainted(false);
-        jButton3.setPreferredSize(new java.awt.Dimension(130, 35));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        deleteButton.setBackground(new java.awt.Color(220, 53, 69));
+        deleteButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setText("Удалить");
+        deleteButton.setFocusPainted(false);
+        deleteButton.setPreferredSize(new java.awt.Dimension(130, 35));
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                deleteButtonActionPerformed(evt);
             }
         });
-        buttonPanel.add(jButton3);
+        buttonPanel.add(deleteButton);
 
-        jButton5.setBackground(new java.awt.Color(255, 153, 0));
-        jButton5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Обновить");
-        jButton5.setFocusPainted(false);
-        jButton5.setPreferredSize(new java.awt.Dimension(130, 35));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        refreshButton.setBackground(new java.awt.Color(255, 153, 0));
+        refreshButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        refreshButton.setForeground(new java.awt.Color(255, 255, 255));
+        refreshButton.setText("Обновить");
+        refreshButton.setFocusPainted(false);
+        refreshButton.setPreferredSize(new java.awt.Dimension(130, 35));
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                refreshButtonActionPerformed(evt);
             }
         });
-        buttonPanel.add(jButton5);
+        buttonPanel.add(refreshButton);
 
         add(buttonPanel, java.awt.BorderLayout.CENTER);
 
@@ -187,34 +187,34 @@ public class WarehousesPanel extends javax.swing.JPanel {
         add(tablePanel, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_editButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_refreshButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
     private javax.swing.JPanel buttonPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton editButton;
     private javax.swing.JLabel namePanelLabel;
-    private javax.swing.JLabel productDateLabel;
+    private javax.swing.JButton refreshButton;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JScrollPane tableScrollPane;
     private javax.swing.JTable tblWarehouse;
+    private javax.swing.JLabel warehouseDateLabel;
     private javax.swing.JPanel warehouseHeaderPanel;
     // End of variables declaration//GEN-END:variables
 }

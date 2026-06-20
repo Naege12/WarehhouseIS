@@ -5,6 +5,7 @@
 package View;
 
 import controllers.Controller;
+import model.User;
 
 import javax.swing.*;
 
@@ -175,30 +176,34 @@ public class LoginFormNET extends javax.swing.JFrame {
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         Controller con = new Controller();
-        if (!con.checkAccept(loginField.getText(), passwordField.getText()))
+        String login = loginField.getText();
+        String password = passwordField.getText();
+        User user = new User();
+
+        if (!con.checkAccept(login, password))
         {
             JOptionPane.showMessageDialog(this, "Заполните все поля.", "Предупреждение", JOptionPane.WARNING_MESSAGE);
         }
-        else
-        {
-            switch (con.getUserRole(loginField.getText(), passwordField.getText()))
-            {
-                case 0 -> {
-                    JOptionPane.showMessageDialog(this, "Пользователь не найден, обратитесь к администратору.", "Ошибка", JOptionPane.ERROR_MESSAGE);
-                }
-                case 1 -> {
-                    JOptionPane.showMessageDialog(this, "Добро пожаловать администратор", "Успех", JOptionPane.INFORMATION_MESSAGE);
-                    MainForm mainForm = new MainForm(this);
-                    mainForm.setVisible(true);
-                    passwordField.setText("");
-                    loginField.setText("");
-                    this.setVisible(false);
-                }
-                case 2 -> {
-                    JOptionPane.showMessageDialog(this, "Добро пожаловать пользователь", "Успех", JOptionPane.INFORMATION_MESSAGE);
-                }
+        else {
+            user = con.getUserInDb(login, password);
+
+            if (user == null) {
+                JOptionPane.showMessageDialog(this, "Вы ввели неправильный логин или пароль", "Внимание", JOptionPane.INFORMATION_MESSAGE);
+                return;
             }
 
+            if (user.getIsBlocked()) {
+                JOptionPane.showMessageDialog(this, "Ваш пользователь был заблокирован, обратитесь к администратору", "Внимание", JOptionPane.INFORMATION_MESSAGE);
+                passwordField.setText("");
+                loginField.setText("");
+                return;
+            }
+
+            MainForm mainForm = new MainForm(this, user);
+            mainForm.setVisible(true);
+            passwordField.setText("");
+            loginField.setText("");
+            this.setVisible(false);
         }
     }
 

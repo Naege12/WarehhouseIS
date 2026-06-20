@@ -11,6 +11,8 @@ import View.Panels.usersPanel;
 import View.Panels.OutcomePanel;
 import View.Panels.WarehousesPanel;
 import View.Panels.IncomePanel;
+import model.User;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -33,9 +35,11 @@ public class MainForm extends javax.swing.JFrame {
     private OutcomePanel outcomePanel;
     private usersPanel userPanel;
     private boolean isAdmin = false;
+    private User user = new User();
 
-    public MainForm(JFrame parrentFrame) {
+    public MainForm(JFrame parrentFrame, User user) {
         this.parrentFrame = parrentFrame;
+        this.user = user;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
 
@@ -50,6 +54,7 @@ public class MainForm extends javax.swing.JFrame {
         incomePanel = new IncomePanel();
         outcomePanel = new OutcomePanel();
         userPanel = new usersPanel();
+        userLabel.setText(this.user.getFullName());
 
         contentPanel.add(dashboardPanel, "dashboard");
         contentPanel.add(settingsPanel, "settings");
