@@ -41,6 +41,12 @@ public class MainForm extends javax.swing.JFrame {
         this.parrentFrame = parrentFrame;
         this.user = user;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        String userRole = user.getRole();
+        if(userRole.equals("admin"))
+        {
+            isAdmin = true;
+        }
+
         initComponents();
 
         contentPanel.removeAll();
@@ -65,6 +71,11 @@ public class MainForm extends javax.swing.JFrame {
         contentPanel.add(userPanel, "users");
 
         cardLayout.show(contentPanel, "dashboard");
+
+        if (!isAdmin)
+        {
+            usersButton.setVisible(false);
+        }
     }
 
     /**

@@ -5,6 +5,7 @@
 package View;
 
 import controllers.Controller;
+import dao.UserDAO;
 import model.User;
 
 import javax.swing.*;
@@ -174,37 +175,57 @@ public class LoginFormNET extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
         Controller con = new Controller();
-        String login = loginField.getText();
-        String password = passwordField.getText();
-        User user = new User();
+        UserDAO userDAO = new UserDAO();
+        String login = loginField.getText().trim();
+        String password = passwordField.getText().trim();
 
-        if (!con.checkAccept(login, password))
-        {
+
+        if (!con.checkAccept(login, password)) {
             JOptionPane.showMessageDialog(this, "Заполните все поля.", "Предупреждение", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-        else {
-            user = con.getUserInDb(login, password);
 
-            if (user == null) {
-                JOptionPane.showMessageDialog(this, "Вы ввели неправильный логин или пароль", "Внимание", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
+        User user = userDAO.getUserInDb(login);
 
-            if (user.getIsBlocked()) {
-                JOptionPane.showMessageDialog(this, "Ваш пользователь был заблокирован, обратитесь к администратору", "Внимание", JOptionPane.INFORMATION_MESSAGE);
-                passwordField.setText("");
-                loginField.setText("");
-                return;
-            }
 
-            MainForm mainForm = new MainForm(this, user);
-            mainForm.setVisible(true);
-            passwordField.setText("");
-            loginField.setText("");
-            this.setVisible(false);
+        if (user == null) {
+            JOptionPane.showMessageDialog(this, "Пользователь с таким логином не найден", "Ошибка", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+
+        if (user.getIsBlocked()) {
+            JOptionPane.showMessageDialog(this, "Ваш пользователь был заблокирован, обратитесь к администратору", "Внимание", JOptionPane.WARNING_MESSAGE);
+            clearFields();
+            return;
+        }
+
+        if (!user.getPassword().equals(password)) {
+            user.incrementFailedAttempts();
+            userDAO.updateUser(user);
+
+            JOptionPane.showMessageDialog(this, "Вы ввели неправильный логин или пароль", "Внимание", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        user.resetFailedAttempts();
+        userDAO.updateUser(user);
+
+        if (user.isMustChangePassword()) {
+            JOptionPane.showMessageDialog(this, "Вам был выдан временный пароль, пожалуйста поменяйте его", "Внимание", JOptionPane.WARNING_MESSAGE);
+        }
+
+        JOptionPane.showMessageDialog(this, "Добро пожаловать " + user.getFullName(), "Успех", JOptionPane.INFORMATION_MESSAGE);
+        MainForm mainForm = new MainForm(this, user);
+        mainForm.setVisible(true);
+        this.setVisible(false);
+        clearFields();
+    }
+
+    private void clearFields() {
+        loginField.setText("");
+        passwordField.setText("");
     }
 
     /**

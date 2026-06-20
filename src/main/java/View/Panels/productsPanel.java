@@ -62,12 +62,6 @@ public class productsPanel extends javax.swing.JPanel {
         }
     }
 
-    private void delete(Long id)
-    {
-
-    }
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -210,7 +204,8 @@ public class productsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
+        AddProductForm addProductPanel = new AddProductForm();
+        addProductPanel.setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -218,7 +213,19 @@ public class productsPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = tblProducts.getSelectedRow();
+        if (selectedRow == -1)
+        {
+            JOptionPane.showMessageDialog(this, "Выберите запись", "Внимание", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        else
+        {
+            Long id = (Long) tblProducts.getValueAt(selectedRow, 0);
+            productDAO.deleteProduct(id);
+            loadData();
+
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void reloadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reloadButtonActionPerformed

@@ -4,17 +4,56 @@
  */
 package View.Panels;
 
+import dao.UserDAO;
+import model.Product;
+import model.User;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 /**
  *
  * @author User
  */
 public class usersPanel extends javax.swing.JPanel {
+    UserDAO userDAO = new UserDAO();
 
     /**
      * Creates new form usersPanel
      */
     public usersPanel() {
         initComponents();
+        loadUserData();
+    }
+
+    private void loadUserData() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        try {
+            List<User> users = userDAO.getAllUsers();
+
+            if (users.isEmpty()) {
+                model.addRow(new Object[]{"—", "Ошибка загрузки пользователей", "—", "—", "—", "—"});
+            } else {
+                for (User u : users) {
+                    model.addRow(new Object[]{
+                            u.getId(),
+                            u.getLogin(),
+                            u.getPassword(),
+                            u.getFullName(),
+                            u.getRole(),
+                            u.getIsBlocked(),
+                            u.getLastLogin(),
+                            u.isMustChangePassword(),
+                            u.getCreatedAt()
+                    });
+                }
+            }
+            System.out.println("✅ Загружено пользователей: " + users.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

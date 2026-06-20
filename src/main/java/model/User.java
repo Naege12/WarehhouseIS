@@ -31,7 +31,6 @@ public class User {
     public Long getId() {
         return _id;
     }
-
     public void setId(Long id)
     {
         _id = id;
@@ -41,7 +40,6 @@ public class User {
     {
         return _login;
     }
-
     public void setLogin(String login)
     {
         _login = login;
@@ -51,7 +49,6 @@ public class User {
     {
         return _password;
     }
-
     public void setPassword(String passvord)
     {
         _password = passvord;
@@ -61,7 +58,6 @@ public class User {
     {
         return _fullName;
     }
-
     public void setFullName(String fullName)
     {
         _fullName = fullName;
@@ -71,7 +67,6 @@ public class User {
     {
         return _role;
     }
-
     public void setRole(String role)
     {
         _role = role;
@@ -81,7 +76,6 @@ public class User {
     {
         return _isBlocked;
     }
-
     public void setIsBlocked(boolean blocked)
     {
         _isBlocked = blocked;
@@ -91,7 +85,6 @@ public class User {
     {
         return _failedAttempts;
     }
-
     public void setFailedAttempts(int failedAttempts)
     {
         _failedAttempts = failedAttempts;
@@ -101,7 +94,6 @@ public class User {
     {
         return _lastLogin;
     }
-
     public void setLastLogin(LocalDateTime lastLogin)
     {
         _lastLogin = lastLogin;
