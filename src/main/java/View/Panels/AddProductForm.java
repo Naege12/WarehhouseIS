@@ -4,11 +4,19 @@
  */
 package View.Panels;
 
+import controllers.Controller;
+import dao.ProductDAO;
+import model.Product;
+
+import javax.swing.*;
+
 /**
  *
  * @author User
  */
 public class AddProductForm extends javax.swing.JFrame {
+    private Controller con = new Controller();
+    private ProductDAO productDAO = new ProductDAO();
 
     /**
      * Creates new form AddProductForm
@@ -140,7 +148,8 @@ public class AddProductForm extends javax.swing.JFrame {
         jPanel1.add(minStockLabel, gridBagConstraints);
 
         articleTextField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        articleTextField.setForeground(new java.awt.Color(255, 255, 255));
+        articleTextField.setForeground(new java.awt.Color(0, 0, 0));
+        articleTextField.setCaretColor(new java.awt.Color(0, 0, 0));
         articleTextField.setMinimumSize(new java.awt.Dimension(100, 30));
         articleTextField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -148,7 +157,8 @@ public class AddProductForm extends javax.swing.JFrame {
         jPanel1.add(articleTextField, gridBagConstraints);
 
         namejTextField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        namejTextField.setForeground(new java.awt.Color(255, 255, 255));
+        namejTextField.setForeground(new java.awt.Color(0, 0, 0));
+        namejTextField.setCaretColor(new java.awt.Color(0, 0, 0));
         namejTextField.setMinimumSize(new java.awt.Dimension(100, 30));
         namejTextField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -158,7 +168,7 @@ public class AddProductForm extends javax.swing.JFrame {
         jPanel1.add(namejTextField, gridBagConstraints);
 
         categoryjComboBox.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        categoryjComboBox.setForeground(new java.awt.Color(255, 255, 255));
+        categoryjComboBox.setForeground(new java.awt.Color(0, 0, 0));
         categoryjComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         categoryjComboBox.setMinimumSize(new java.awt.Dimension(100, 30));
         categoryjComboBox.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -169,7 +179,8 @@ public class AddProductForm extends javax.swing.JFrame {
         jPanel1.add(categoryjComboBox, gridBagConstraints);
 
         unitjTextField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        unitjTextField.setForeground(new java.awt.Color(255, 255, 255));
+        unitjTextField.setForeground(new java.awt.Color(0, 0, 0));
+        unitjTextField.setCaretColor(new java.awt.Color(0, 0, 0));
         unitjTextField.setMinimumSize(new java.awt.Dimension(100, 30));
         unitjTextField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -179,7 +190,8 @@ public class AddProductForm extends javax.swing.JFrame {
         jPanel1.add(unitjTextField, gridBagConstraints);
 
         supplierjTextField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        supplierjTextField.setForeground(new java.awt.Color(255, 255, 255));
+        supplierjTextField.setForeground(new java.awt.Color(0, 0, 0));
+        supplierjTextField.setCaretColor(new java.awt.Color(0, 0, 0));
         supplierjTextField.setMinimumSize(new java.awt.Dimension(100, 30));
         supplierjTextField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -189,7 +201,8 @@ public class AddProductForm extends javax.swing.JFrame {
         jPanel1.add(supplierjTextField, gridBagConstraints);
 
         purchasePricejTextField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        purchasePricejTextField.setForeground(new java.awt.Color(255, 255, 255));
+        purchasePricejTextField.setForeground(new java.awt.Color(0, 0, 0));
+        purchasePricejTextField.setCaretColor(new java.awt.Color(0, 0, 0));
         purchasePricejTextField.setMinimumSize(new java.awt.Dimension(100, 30));
         purchasePricejTextField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -199,7 +212,8 @@ public class AddProductForm extends javax.swing.JFrame {
         jPanel1.add(purchasePricejTextField, gridBagConstraints);
 
         sellingPricejTextField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        sellingPricejTextField.setForeground(new java.awt.Color(255, 255, 255));
+        sellingPricejTextField.setForeground(new java.awt.Color(0, 0, 0));
+        sellingPricejTextField.setCaretColor(new java.awt.Color(0, 0, 0));
         sellingPricejTextField.setMinimumSize(new java.awt.Dimension(100, 30));
         sellingPricejTextField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -209,7 +223,8 @@ public class AddProductForm extends javax.swing.JFrame {
         jPanel1.add(sellingPricejTextField, gridBagConstraints);
 
         minStockjTextField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        minStockjTextField.setForeground(new java.awt.Color(255, 255, 255));
+        minStockjTextField.setForeground(new java.awt.Color(0, 0, 0));
+        minStockjTextField.setCaretColor(new java.awt.Color(0, 0, 0));
         minStockjTextField.setMinimumSize(new java.awt.Dimension(100, 30));
         minStockjTextField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -219,7 +234,8 @@ public class AddProductForm extends javax.swing.JFrame {
         jPanel1.add(minStockjTextField, gridBagConstraints);
 
         celljTextField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        celljTextField.setForeground(new java.awt.Color(255, 255, 255));
+        celljTextField.setForeground(new java.awt.Color(0, 0, 0));
+        celljTextField.setCaretColor(new java.awt.Color(0, 0, 0));
         celljTextField.setMinimumSize(new java.awt.Dimension(100, 30));
         celljTextField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -250,6 +266,17 @@ public class AddProductForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addjButtonActionPerformed
+        if (con.addProductCheckAccept(articleTextField.getText(), namejTextField.getText(), unitjTextField.getText(),(String) categoryjComboBox.getSelectedItem(), supplierjTextField.getText(),
+                purchasePricejTextField.getText(), sellingPricejTextField.getText(), celljTextField.getText(), minStockjTextField.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Заполните все поля", "Внимание", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Product p = con.addNewProduct(articleTextField.getText(), namejTextField.getText(), unitjTextField.getText(), (String) categoryjComboBox.getSelectedItem(), supplierjTextField.getText(),
+                purchasePricejTextField.getText(), sellingPricejTextField.getText(), celljTextField.getText(), minStockjTextField.getText());
+        productDAO.addProduct(p);
+        JOptionPane.showMessageDialog(this, "Товар был успешно добавлен", "Успех", JOptionPane.INFORMATION_MESSAGE);
         this.setVisible(false);
     }//GEN-LAST:event_addjButtonActionPerformed
 

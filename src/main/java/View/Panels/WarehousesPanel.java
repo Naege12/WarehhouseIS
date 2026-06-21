@@ -7,6 +7,7 @@ package View.Panels;
 import dao.WarehouseDAO;
 import model.Warehouse;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
@@ -188,7 +189,8 @@ public class WarehousesPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
+        AddWarehouseForm addForm = new AddWarehouseForm();
+        addForm.setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
@@ -200,7 +202,8 @@ public class WarehousesPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
-        // TODO add your handling code here:
+        loadData();
+        JOptionPane.showMessageDialog(this, "Данные успешно обнавлены", "Успех", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_refreshButtonActionPerformed
 
 

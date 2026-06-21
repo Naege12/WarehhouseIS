@@ -5,9 +5,9 @@
 package View.Panels;
 
 import dao.UserDAO;
-import model.Product;
 import model.User;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class usersPanel extends javax.swing.JPanel {
     }
 
     private void loadUserData() {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) userTable.getModel();
         model.setRowCount(0);
 
         try {
@@ -69,10 +69,19 @@ public class usersPanel extends javax.swing.JPanel {
         namePanelLabel = new javax.swing.JLabel();
         usersDateLabel = new javax.swing.JLabel();
         usersContentPanel = new javax.swing.JPanel();
+        buttonPanel = new javax.swing.JPanel();
+        addButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        deleteBlockButton = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
         usersTabelPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        userScrollPane = new javax.swing.JScrollPane();
+        userTable = new javax.swing.JTable();
 
+        setMaximumSize(new java.awt.Dimension(900, 148));
+        setMinimumSize(new java.awt.Dimension(900, 148));
+        setPreferredSize(new java.awt.Dimension(900, 148));
         setLayout(new java.awt.BorderLayout());
 
         usersHeaderPanel.setBackground(new java.awt.Color(33, 37, 41));
@@ -93,39 +102,154 @@ public class usersPanel extends javax.swing.JPanel {
 
         add(usersHeaderPanel, java.awt.BorderLayout.PAGE_START);
 
+        usersContentPanel.setBackground(new java.awt.Color(33, 37, 41));
         usersContentPanel.setLayout(new java.awt.BorderLayout());
+
+        buttonPanel.setBackground(new java.awt.Color(33, 37, 41));
+        buttonPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        buttonPanel.setMaximumSize(new java.awt.Dimension(900, 50));
+        buttonPanel.setMinimumSize(new java.awt.Dimension(900, 35));
+        buttonPanel.setPreferredSize(new java.awt.Dimension(900, 50));
+
+        addButton.setBackground(new java.awt.Color(40, 167, 69));
+        addButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        addButton.setForeground(new java.awt.Color(255, 255, 255));
+        addButton.setText("Добавить");
+        addButton.setFocusPainted(false);
+        addButton.setPreferredSize(new java.awt.Dimension(130, 35));
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+        buttonPanel.add(addButton);
+
+        editButton.setBackground(new java.awt.Color(255, 193, 7));
+        editButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        editButton.setForeground(new java.awt.Color(255, 255, 255));
+        editButton.setText("Редактировать");
+        editButton.setFocusPainted(false);
+        editButton.setMaximumSize(new java.awt.Dimension(190, 29));
+        editButton.setPreferredSize(new java.awt.Dimension(170, 35));
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+        buttonPanel.add(editButton);
+
+        deleteButton.setBackground(new java.awt.Color(220, 53, 69));
+        deleteButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setText("Удалить");
+        deleteButton.setFocusPainted(false);
+        deleteButton.setPreferredSize(new java.awt.Dimension(130, 35));
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+        buttonPanel.add(deleteButton);
+
+        deleteBlockButton.setBackground(new java.awt.Color(220, 53, 69));
+        deleteBlockButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        deleteBlockButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteBlockButton.setText("Снять блокировку");
+        deleteBlockButton.setFocusPainted(false);
+        deleteBlockButton.setPreferredSize(new java.awt.Dimension(200, 35));
+        deleteBlockButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBlockButtonActionPerformed(evt);
+            }
+        });
+        buttonPanel.add(deleteBlockButton);
+
+        refreshButton.setBackground(new java.awt.Color(255, 153, 0));
+        refreshButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        refreshButton.setForeground(new java.awt.Color(255, 255, 255));
+        refreshButton.setText("Обновить");
+        refreshButton.setFocusPainted(false);
+        refreshButton.setPreferredSize(new java.awt.Dimension(130, 35));
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+        buttonPanel.add(refreshButton);
+
+        usersContentPanel.add(buttonPanel, java.awt.BorderLayout.NORTH);
 
         usersTabelPanel.setBackground(new java.awt.Color(33, 37, 41));
         usersTabelPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ПОЛЬЗОВАТЕЛИ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 20), new java.awt.Color(255, 255, 255))); // NOI18N
+        usersTabelPanel.setMinimumSize(new java.awt.Dimension(900, 900));
+        usersTabelPanel.setPreferredSize(new java.awt.Dimension(900, 900));
         usersTabelPanel.setLayout(new java.awt.BorderLayout());
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        userScrollPane.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        userTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Логин", "Пароль", "ФИО", "Роль", "Блокировка", "Дата последнего входа", "Требуеться смена пароля", "Дата регистрации"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
+            };
 
-        usersTabelPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        userTable.setPreferredSize(new java.awt.Dimension(750, 120));
+        userScrollPane.setViewportView(userTable);
+
+        usersTabelPanel.add(userScrollPane, java.awt.BorderLayout.CENTER);
 
         usersContentPanel.add(usersTabelPanel, java.awt.BorderLayout.CENTER);
 
         add(usersContentPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        UserAddForm addForm = new UserAddForm();
+        addForm.setVisible(true);
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        loadUserData();
+        JOptionPane.showMessageDialog(this, "Данные успешно обнавленны", "Успех", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_refreshButtonActionPerformed
+
+    private void deleteBlockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBlockButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteBlockButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton addButton;
+    private javax.swing.JPanel buttonPanel;
+    private javax.swing.JButton deleteBlockButton;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton editButton;
     private javax.swing.JLabel namePanelLabel;
+    private javax.swing.JButton refreshButton;
+    private javax.swing.JScrollPane userScrollPane;
+    private javax.swing.JTable userTable;
     private javax.swing.JPanel usersContentPanel;
     private javax.swing.JLabel usersDateLabel;
     private javax.swing.JPanel usersHeaderPanel;

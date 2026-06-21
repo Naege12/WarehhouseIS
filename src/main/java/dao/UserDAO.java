@@ -3,6 +3,7 @@ package dao;
 import controllers.ConnectDB;
 import model.User;
 
+import java.security.PrivilegedAction;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,29 @@ public class UserDAO {
             ex.printStackTrace();
         }
         return user;
+    }
+
+    public boolean addUser(User user)
+    {
+        String sql = "INSERT INTO users (login, password_hash, full_name, role, is_blocked, failed_attempts, last_login, must_change_password, created_at) VALUES (?, ?, ?, ?, false, 0, null, true, ?)";
+        try(Connection connection = ConnectDB.getConnection())
+        {
+            Timestamp timestamp;
+            PreparedStatement prpQuery = connection.prepareStatement(sql);
+            prpQuery.setString(1, user.getLogin());
+            prpQuery.setString(2, user.getPassword());
+            prpQuery.setString(3, user.getFullName());
+            prpQuery.setString(4, user.getRole());
+            timestamp = Timestamp.valueOf(user.getCreatedAt());
+            prpQuery.setTimestamp(5, timestamp);
+
+            return prpQuery.executeUpdate() > 0;
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
 

@@ -55,7 +55,7 @@ public class WarehouseDAO {
 
 
     public boolean addWarehouse(Warehouse warehouse) {
-        String sql = "INSERT INTO warehouses (name, address, is_active) VALUES (?, ?, true)";
+        String sql = "INSERT INTO warehouses (name, address) VALUES (?, ?)";
 
         try (Connection conn = ConnectDB.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
