@@ -1,4 +1,4 @@
-import View.LoginFormNET;
+import View.LoginForm;
 import controllers.ConnectDB;
 
 import javax.swing.*;
@@ -12,7 +12,7 @@ public class Main {
             System.exit(0);
         }
         System.out.println("Подключен!");
-        LoginFormNET login = new LoginFormNET();
+        LoginForm login = new LoginForm();
         login.setVisible(true);
     }
 }
