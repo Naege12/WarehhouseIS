@@ -9,6 +9,9 @@ import model.Product;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -16,7 +19,8 @@ import java.util.List;
  * @author User
  */
 public class productsPanel extends javax.swing.JPanel {
-    private ProductDAO productDAO = new ProductDAO();
+    final ProductDAO productDAO = new ProductDAO();
+    LocalDate ld;
 
     /**
      * Creates new form productsPanel
@@ -24,6 +28,8 @@ public class productsPanel extends javax.swing.JPanel {
     public productsPanel() {
         initComponents();
         loadData();
+        ld = LocalDate.now();
+        productDateLabel.setText(ld.toString());
     }
 
     public void loadData()
@@ -60,6 +66,95 @@ public class productsPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void showEditProductDialog(Product product) {
+        JDialog dialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this),
+                "Редактирование товара", true);
+        dialog.setLayout(new BorderLayout());
+        dialog.setSize(500, 400);
+        dialog.setLocationRelativeTo(this);
+
+        // Форма
+        JPanel formPanel = new JPanel(new GridLayout(6, 2, 10, 10));
+        formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JTextField txtSku = new JTextField(product.getArticle());
+        JTextField txtName = new JTextField(product.getName());
+        JTextField txtCategory = new JTextField(product.getCategory());
+        JTextField txtPurchasePrice = new JTextField(
+                product.getPurchasePrice() != null ? product.getPurchasePrice().toString() : "0"
+        );
+        JTextField txtSellingPrice = new JTextField(
+                product.getSellingPrice() != null ? product.getSellingPrice().toString() : "0"
+        );
+        JTextField txtMinStock = new JTextField(
+                product.getMinStock() != null ? product.getMinStock().toString() : "0"
+        );
+
+        formPanel.add(new JLabel("Артикул (SKU):"));
+        formPanel.add(txtSku);
+        formPanel.add(new JLabel("Название:"));
+        formPanel.add(txtName);
+        formPanel.add(new JLabel("Категория:"));
+        formPanel.add(txtCategory);
+        formPanel.add(new JLabel("Цена закупки:"));
+        formPanel.add(txtPurchasePrice);
+        formPanel.add(new JLabel("Цена продажи:"));
+        formPanel.add(txtSellingPrice);
+        formPanel.add(new JLabel("Мин. остаток:"));
+        formPanel.add(txtMinStock);
+
+        // Кнопки
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        JButton btnSave = new JButton("Сохранить");
+        btnSave.setBackground(new Color(40, 167, 69));
+        btnSave.setForeground(Color.WHITE);
+
+        JButton btnCancel = new JButton("Отмена");
+        btnCancel.setBackground(new Color(108, 117, 125));
+        btnCancel.setForeground(Color.WHITE);
+
+        buttonPanel.add(btnSave);
+        buttonPanel.add(btnCancel);
+
+        dialog.add(formPanel, BorderLayout.CENTER);
+        dialog.add(buttonPanel, BorderLayout.SOUTH);
+
+        // Обработчики
+        btnCancel.addActionListener(e -> dialog.dispose());
+
+        btnSave.addActionListener(e -> {
+            try {
+                // Валидация
+                if (txtSku.getText().trim().isEmpty() || txtName.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(dialog, "Артикул и название обязательны");
+                    return;
+                }
+
+                // Обновляем объект
+                product.setArticle(txtSku.getText().trim());
+                product.setName(txtName.getText().trim());
+                product.setCategory(txtCategory.getText().trim());
+                product.setPurchasePrice(new BigDecimal(txtPurchasePrice.getText().trim()));
+                product.setSellingPrice(new BigDecimal(txtSellingPrice.getText().trim()));
+                product.setMinStock(new BigDecimal(txtMinStock.getText().trim()));
+
+                // Сохраняем в БД
+                boolean success = productDAO.updateProduct(product);
+                if (success) {
+                    dialog.dispose();
+                    loadData(); // обновляем таблицу
+                    JOptionPane.showMessageDialog(this, "Товар обновлён");
+                } else {
+                    JOptionPane.showMessageDialog(dialog, "Ошибка обновления");
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(dialog, "Проверьте числовые поля");
+            }
+        });
+
+        dialog.setVisible(true);
     }
 
     /**
@@ -209,7 +304,24 @@ public class productsPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = tblProducts.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Выберите товар для редактирования");
+            return;
+        }
+
+        // Получаем ID из скрытой колонки
+        Long productId = (Long) tblProducts.getValueAt(selectedRow, 0);
+
+        // Загружаем товар из БД
+        Product product = productDAO.getProductById(productId);
+        if (product == null) {
+            JOptionPane.showMessageDialog(this, "Товар не найден");
+            return;
+        }
+
+        // Открываем диалог редактирования
+        showEditProductDialog(product);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed

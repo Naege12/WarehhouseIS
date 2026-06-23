@@ -9,7 +9,11 @@ import model.User;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -17,6 +21,7 @@ import java.util.List;
  */
 public class usersPanel extends javax.swing.JPanel {
     UserDAO userDAO = new UserDAO();
+    LocalDate ld;
 
     /**
      * Creates new form usersPanel
@@ -24,6 +29,8 @@ public class usersPanel extends javax.swing.JPanel {
     public usersPanel() {
         initComponents();
         loadUserData();
+        ld = LocalDate.now();
+        usersDateLabel.setText(ld.toString());
     }
 
     private void loadUserData() {
@@ -56,6 +63,78 @@ public class usersPanel extends javax.swing.JPanel {
         }
     }
 
+    private void showEditUserDialog(User user) {
+        JDialog dialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this),
+                "Редактирование пользователя", true);
+        dialog.setLayout(new BorderLayout());
+        dialog.setSize(450, 350);
+        dialog.setLocationRelativeTo(this);
+
+        JPanel formPanel = new JPanel(new GridLayout(6, 2, 10, 10));
+        formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JTextField txtLogin = new JTextField(user.getLogin());
+        JTextField txtFullName = new JTextField(user.getFullName());
+        JComboBox<String> cmbRole = new JComboBox<>(new String[]{"user", "admin"});
+        cmbRole.setSelectedItem(user.getRole());
+        JCheckBox chkBlocked = new JCheckBox("Заблокирован", user.getIsBlocked());
+        JCheckBox chkMustChange = new JCheckBox("Требуется смена пароля", user.isMustChangePassword());
+        JTextField txtPassword = new JTextField(); // для смены пароля (опционально)
+
+        formPanel.add(new JLabel("Логин:"));
+        formPanel.add(txtLogin);
+        formPanel.add(new JLabel("ФИО:"));
+        formPanel.add(txtFullName);
+        formPanel.add(new JLabel("Роль:"));
+        formPanel.add(cmbRole);
+        formPanel.add(new JLabel("Статус:"));
+        formPanel.add(chkBlocked);
+        formPanel.add(new JLabel("Смена пароля:"));
+        formPanel.add(chkMustChange);
+        formPanel.add(new JLabel("Новый пароль:"));
+        formPanel.add(txtPassword);
+
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        JButton btnSave = new JButton("Сохранить");
+        JButton btnCancel = new JButton("Отмена");
+        buttonPanel.add(btnSave);
+        buttonPanel.add(btnCancel);
+
+        dialog.add(formPanel, BorderLayout.CENTER);
+        dialog.add(buttonPanel, BorderLayout.SOUTH);
+
+        btnCancel.addActionListener(e -> dialog.dispose());
+
+        btnSave.addActionListener(e -> {
+            if (txtLogin.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(dialog, "Введите логин");
+                return;
+            }
+
+            user.setLogin(txtLogin.getText().trim());
+            user.setFullName(txtFullName.getText().trim());
+            user.setRole((String) cmbRole.getSelectedItem());
+            user.setIsBlocked(chkBlocked.isSelected());
+            user.setMustChangePassword(chkMustChange.isSelected());
+
+            // Если введён новый пароль — обновляем
+            if (!txtPassword.getText().trim().isEmpty()) {
+                user.setPassword(txtPassword.getText().trim());
+            }
+
+            boolean success = userDAO.updateUser(user);
+            if (success) {
+                dialog.dispose();
+                loadUserData();
+                JOptionPane.showMessageDialog(this, "Пользователь обновлён");
+            } else {
+                JOptionPane.showMessageDialog(dialog, "Ошибка обновления");
+            }
+        });
+
+        dialog.setVisible(true);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,7 +152,6 @@ public class usersPanel extends javax.swing.JPanel {
         addButton = new javax.swing.JButton();
         editButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        deleteBlockButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
         usersTabelPanel = new javax.swing.JPanel();
         userScrollPane = new javax.swing.JScrollPane();
@@ -151,19 +229,6 @@ public class usersPanel extends javax.swing.JPanel {
         });
         buttonPanel.add(deleteButton);
 
-        deleteBlockButton.setBackground(new java.awt.Color(220, 53, 69));
-        deleteBlockButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        deleteBlockButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteBlockButton.setText("Снять блокировку");
-        deleteBlockButton.setFocusPainted(false);
-        deleteBlockButton.setPreferredSize(new java.awt.Dimension(200, 35));
-        deleteBlockButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteBlockButtonActionPerformed(evt);
-            }
-        });
-        buttonPanel.add(deleteBlockButton);
-
         refreshButton.setBackground(new java.awt.Color(255, 153, 0));
         refreshButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         refreshButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -223,7 +288,21 @@ public class usersPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = userTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Выберите пользователя для редактирования");
+            return;
+        }
+
+        Long userId = (Long) userTable.getValueAt(selectedRow, 0);
+        User user = userDAO.getUserById(userId);
+
+        if (user == null) {
+            JOptionPane.showMessageDialog(this, "Пользователь не найден");
+            return;
+        }
+
+        showEditUserDialog(user);
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
@@ -235,15 +314,10 @@ public class usersPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Данные успешно обнавленны", "Успех", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_refreshButtonActionPerformed
 
-    private void deleteBlockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBlockButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteBlockButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JPanel buttonPanel;
-    private javax.swing.JButton deleteBlockButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
     private javax.swing.JLabel namePanelLabel;

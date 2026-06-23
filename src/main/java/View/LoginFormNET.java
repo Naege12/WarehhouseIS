@@ -9,6 +9,7 @@ import dao.UserDAO;
 import model.User;
 
 import javax.swing.*;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -209,6 +210,8 @@ public class LoginFormNET extends javax.swing.JFrame {
             return;
         }
 
+        LocalDateTime ldt = LocalDateTime.now();
+        user.setLastLogin(ldt);
         user.resetFailedAttempts();
         userDAO.updateUser(user);
 
@@ -217,6 +220,7 @@ public class LoginFormNET extends javax.swing.JFrame {
         }
 
         JOptionPane.showMessageDialog(this, "Добро пожаловать " + user.getFullName(), "Успех", JOptionPane.INFORMATION_MESSAGE);
+
         MainForm mainForm = new MainForm(this, user);
         mainForm.setVisible(true);
         this.setVisible(false);

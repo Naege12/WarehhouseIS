@@ -54,11 +54,11 @@ public class MainForm extends javax.swing.JFrame {
         cardLayout = (CardLayout) contentPanel.getLayout();
 
         dashboardPanel = new dashboardPanel();
-        settingsPanel = new settingsPanel();
+        settingsPanel = new settingsPanel(this.user);
         productPanel = new productsPanel();
         warehousePanel = new WarehousesPanel();
-        incomePanel = new IncomePanel();
-        outcomePanel = new OutcomePanel();
+        incomePanel = new IncomePanel(this.user);
+        outcomePanel = new OutcomePanel(this.user);
         userPanel = new usersPanel();
         userLabel.setText(this.user.getFullName());
 

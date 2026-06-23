@@ -2,6 +2,8 @@ package dao;
 
 import model.Movement;
 import controllers.ConnectDB;
+
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,24 @@ public class MovementDAO {
             e.printStackTrace();
         }
         return movements;
+    }
+
+    public BigDecimal getCurrentStock(Long productId, Long warehouseId) {
+        String sql = "SELECT COALESCE(SUM(CASE WHEN type = 'IN' THEN quantity ELSE 0 END), 0) - " +
+                "COALESCE(SUM(CASE WHEN type = 'OUT' THEN quantity ELSE 0 END), 0) AS stock " +
+                "FROM movements WHERE product_id = ? AND warehouse_id = ?";
+        try (Connection con = ConnectDB.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setLong(1, productId);
+            pstmt.setLong(2, warehouseId);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getBigDecimal("stock");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return BigDecimal.ZERO;
     }
 
     

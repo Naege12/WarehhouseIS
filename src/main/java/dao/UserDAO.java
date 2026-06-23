@@ -2,8 +2,6 @@ package dao;
 
 import controllers.ConnectDB;
 import model.User;
-
-import java.security.PrivilegedAction;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,9 +58,10 @@ public class UserDAO {
 
     public boolean updateUser(User user) {
         String sql = "UPDATE users SET login = ?, password_hash = ?, full_name = ?, role = ?, " +
-                "is_blocked = ?, failed_attempts = ?, must_change_password = ? WHERE id = ?";
+                "is_blocked = ?, failed_attempts = ?, must_change_password = ?, last_login = ? WHERE id = ?";
         try (Connection con = ConnectDB.getConnection();
              PreparedStatement pstmt = con.prepareStatement(sql)) {
+
             pstmt.setString(1, user.getLogin());
             pstmt.setString(2, user.getPassword());
             pstmt.setString(3, user.getFullName());
@@ -70,7 +69,13 @@ public class UserDAO {
             pstmt.setBoolean(5, user.getIsBlocked());
             pstmt.setInt(6, user.getFailedAttempts());
             pstmt.setBoolean(7, user.isMustChangePassword());
-            pstmt.setLong(8, user.getId());
+
+            // ✅ Безопасное преобразование (проверка на null)
+            pstmt.setTimestamp(8, user.getLastLogin() != null ?
+                    Timestamp.valueOf(user.getLastLogin()) : null);
+
+            pstmt.setLong(9, user.getId());
+
             return pstmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -138,5 +143,29 @@ public class UserDAO {
             ex.printStackTrace();
         }
         return users;
+    }
+
+    public User getUserById(Long id) {
+        String sql = "SELECT * FROM users WHERE id = ?";
+        try (Connection con = ConnectDB.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setLong(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                User u = new User();
+                u.setId(rs.getLong("id"));
+                u.setLogin(rs.getString("login"));
+                u.setPassword(rs.getString("password_hash"));
+                u.setFullName(rs.getString("full_name"));
+                u.setRole(rs.getString("role"));
+                u.setIsBlocked(rs.getBoolean("is_blocked"));
+                u.setFailedAttempts(rs.getInt("failed_attempts"));
+                u.setMustChangePassword(rs.getBoolean("must_change_password"));
+                return u;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }

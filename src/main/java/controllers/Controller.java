@@ -34,6 +34,24 @@ public class Controller {
         return login.isEmpty() || password.isEmpty() || name.isEmpty() || role.isEmpty();
     }
 
+    public boolean updatePasswordCheckAccept(String oldPassword, String newPassword)
+    {
+        if(oldPassword.isEmpty() || newPassword.isEmpty())
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean equalsPasswords(String oldPassword ,User user)
+    {
+        if (oldPassword.equals(user.getPassword()))
+        {
+            return true;
+        }
+       return false;
+    }
+
     public Product addNewProduct(String article, String name, String unit, String category, String supplierName, String purchasePrice, String sellingPrice, String storageCell, String minStock)
     {
         Product p = new Product();

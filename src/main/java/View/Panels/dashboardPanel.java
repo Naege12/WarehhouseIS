@@ -8,6 +8,7 @@ import dao.MovementDAO;
 import dao.ProductDAO;
 
 import javax.swing.table.DefaultTableModel;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -16,9 +17,10 @@ import java.util.List;
  */
 public class dashboardPanel extends javax.swing.JPanel {
 
-    private ProductDAO  productDAO = new ProductDAO();
-    private MovementDAO movementDAO = new MovementDAO();
+    private final ProductDAO  productDAO = new ProductDAO();
+    private final MovementDAO movementDAO = new MovementDAO();
     private long currentWarehouseId = 1;
+    LocalDate ld;
 
     /**
      * Creates new form deshboardPanel
@@ -26,6 +28,8 @@ public class dashboardPanel extends javax.swing.JPanel {
     public dashboardPanel() {
         initComponents();
         loadData();
+        ld = LocalDate.now();
+        dashboaedDateLabel.setText(ld.toString());
     }
 
 

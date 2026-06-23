@@ -32,7 +32,7 @@ public class WarehouseDAO {
 
 
     public Warehouse getWarehouseById(Long id) {
-        String sql = "SELECT id, name, address FROM warehouses WHERE id = ? AND is_active = true";
+        String sql = "SELECT id, name, address FROM warehouses WHERE id = ?";
 
         try (Connection conn = ConnectDB.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

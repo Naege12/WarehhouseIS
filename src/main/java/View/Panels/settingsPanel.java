@@ -4,17 +4,30 @@
  */
 package View.Panels;
 
+import controllers.Controller;
+import dao.UserDAO;
+import model.User;
+
+import javax.swing.*;
+import java.time.LocalDate;
+
 /**
  *
  * @author User
  */
 public class settingsPanel extends javax.swing.JPanel {
-
+    LocalDate ld;
+    final Controller con = new Controller();
+    final UserDAO dao = new UserDAO();
+    private User user;
     /**
      * Creates new form settingsPanel
      */
-    public settingsPanel() {
+    public settingsPanel(User user) {
         initComponents();
+        this.user = user;
+        ld = LocalDate.now();
+        settingsDateLabel.setText(ld.toString());
     }
 
     /**
@@ -25,13 +38,19 @@ public class settingsPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         settingsHeaderPanel = new javax.swing.JPanel();
         namePanelLabel = new javax.swing.JLabel();
         settingsDateLabel = new javax.swing.JLabel();
         setupPanel = new javax.swing.JPanel();
-        newPassvordLabel = new javax.swing.JLabel();
+        newPasswordLabel = new javax.swing.JLabel();
+        oldPasswordLabel = new javax.swing.JLabel();
+        newPasswordTextField = new javax.swing.JTextField();
+        oldPasswordTextField = new javax.swing.JTextField();
+        updateButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(33, 37, 41));
         setPreferredSize(new java.awt.Dimension(462, 936));
         setLayout(new java.awt.BorderLayout());
 
@@ -56,23 +75,104 @@ public class settingsPanel extends javax.swing.JPanel {
         setupPanel.setBackground(new java.awt.Color(33, 37, 41));
         setupPanel.setForeground(new java.awt.Color(51, 51, 51));
         setupPanel.setName("tablesContainer"); // NOI18N
-        setupPanel.setLayout(new java.awt.GridLayout(2, 1, 10, 10));
+        setupPanel.setLayout(new java.awt.GridBagLayout());
 
-        newPassvordLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        newPassvordLabel.setForeground(new java.awt.Color(0, 0, 0));
-        newPassvordLabel.setText("jLabel1");
-        newPassvordLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        setupPanel.add(newPassvordLabel);
+        newPasswordLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        newPasswordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        newPasswordLabel.setText("Новый пароль:");
+        newPasswordLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 10, 10);
+        setupPanel.add(newPasswordLabel, gridBagConstraints);
 
-        add(setupPanel, java.awt.BorderLayout.CENTER);
+        oldPasswordLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        oldPasswordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        oldPasswordLabel.setText("Текущий пароль:");
+        oldPasswordLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 10, 10);
+        setupPanel.add(oldPasswordLabel, gridBagConstraints);
+
+        newPasswordTextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        newPasswordTextField.setPreferredSize(new java.awt.Dimension(150, 28));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 10, 10);
+        setupPanel.add(newPasswordTextField, gridBagConstraints);
+
+        oldPasswordTextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        oldPasswordTextField.setPreferredSize(new java.awt.Dimension(150, 28));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 10, 10);
+        setupPanel.add(oldPasswordTextField, gridBagConstraints);
+
+        updateButton.setBackground(new java.awt.Color(52, 152, 219));
+        updateButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        updateButton.setForeground(new java.awt.Color(255, 255, 255));
+        updateButton.setText("Обновить пароль");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 10, 10);
+        setupPanel.add(updateButton, gridBagConstraints);
+
+        add(setupPanel, java.awt.BorderLayout.WEST);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        if (!con.updatePasswordCheckAccept(oldPasswordTextField.getText(), newPasswordTextField.getText())) {
+            JOptionPane.showMessageDialog(this, "Заполните все поля", "Внимание", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (!con.equalsPasswords(oldPasswordTextField.getText(), user)) {
+            JOptionPane.showMessageDialog(this, "Введен не правильный пароль!", "Внимание", JOptionPane.WARNING_MESSAGE);
+            oldPasswordTextField.setText("");
+            return;
+        }
+        int answer = JOptionPane.showConfirmDialog(this, "Вы уверены?", "Внимание", JOptionPane.YES_NO_OPTION);
+        if (answer > 0)
+        {
+            oldPasswordTextField.setText("");
+            newPasswordTextField.setText("");
+            return;
+        }
+        user.setPassword(newPasswordTextField.getText());
+        user.setMustChangePassword(false);
+        dao.updateUser(user);
+        JOptionPane.showMessageDialog(this, "Новый пароль установлен", "Успех", JOptionPane.INFORMATION_MESSAGE);
+        oldPasswordTextField.setText("");
+        newPasswordTextField.setText("");
+
+    }//GEN-LAST:event_updateButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel namePanelLabel;
-    private javax.swing.JLabel newPassvordLabel;
+    private javax.swing.JLabel newPasswordLabel;
+    private javax.swing.JTextField newPasswordTextField;
+    private javax.swing.JLabel oldPasswordLabel;
+    private javax.swing.JTextField oldPasswordTextField;
     private javax.swing.JLabel settingsDateLabel;
     private javax.swing.JPanel settingsHeaderPanel;
     private javax.swing.JPanel setupPanel;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }
